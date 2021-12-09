@@ -1,0 +1,84 @@
+.form-label{
+    float: left;
+    width: 113px;
+}
+
+.register-form,.login-form
+{
+    margin-top: 80px;
+    width: 50%;
+    border: 1px solid rgb(199 199 199)
+}
+#register-head
+{
+    padding: 20px;
+}
+/* input
+{
+    width: 150px;
+} */
+form{
+    margin-bottom: 20px;
+}
+
+.form-control
+{
+    width:350px;
+}
+
+.btn-reg
+{
+    background-color: #424242;
+    color:white
+}
+.btn-fb
+{
+    background-color:rgb(169 203 255);
+    color: #08080a;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+ 
+}
+.footer {
+    padding: 10px;
+    padding-top: 40px;
+  
+    margin-left: 40px;
+    margin-right: 40px;
+    /* border: 1px solid #ecececad; */
+  }
+  .footer-last {
+    padding: 10px;
+    text-align: center;
+
+  }
+  .footer li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer {
+    background-color: #424242;
+    color: rgb(255, 255, 255);
+   
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 100px;
+  }
+  
+
+
+
+@media (max-width: 790px) 
+{ 
+    
+
+    .form-control
+{
+    width:150px;
+}
+
+}
+

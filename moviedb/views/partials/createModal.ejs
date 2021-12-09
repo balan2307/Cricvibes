@@ -1,0 +1,40 @@
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Post your views</h5>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <i class='bx bx-window-close'>rf</i>
+          </button> -->
+        </div>
+        <div class="modal-body">
+          <form  action="/user/post" method="post">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <i class='bx bx-window-close' ></i>
+              <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+             
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label ">Image</label>
+              <input type="text" name="image" class="form-control" id="image">
+            </div>
+    
+            <div class="mb-3">
+              <label for="text" class="form-label">Text</label>
+              <textarea class="form-control" name="text" placeholder="Leave a comment here" id="text"></textarea>
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Post</button>
+          </form>
+     
+        </div>
+    
+     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         
+        </div>
+      </div>
+    </div>
+    </div>
