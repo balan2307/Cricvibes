@@ -13,6 +13,11 @@ router.route('/user/post')
 .get(postController.getPost)
 .post(postController.createPost)
 
+
+router.route('/post/:tag')
+.get(postController.getTaggedPost)
+
+
 router.route('/user/post/:id')
 .put(postController.editPost)
 .delete(postController.deletePost)

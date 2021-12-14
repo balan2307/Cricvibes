@@ -26,7 +26,7 @@
       <div class="col-lg-6 col-12 col-sm-8 col-content" >
         
        <div class="home-head">
-        <p>Home</p>
+        <p> <a href="/user/post">Home</a></p>
       
 
        </div>
@@ -129,7 +129,7 @@
            
             <% let n= Math.ceil((total)/2) %>
             <% for(let i=1;i<=n;i++) {%>
-              <li class="page-item"><a class="page-link " href="/user/post?page=<%=i%>"
+              <li class="page-item"><a class="page-link " href="/post/<%=tag%>?page=<%=i%>"
               ><%=i%></a></li>
              
             <%}%>

@@ -24,7 +24,13 @@
               <label for="text" class="form-label">Text</label>
               <textarea class="form-control" name="text" placeholder="Leave a comment here" id="text"></textarea>
             </div>
-           
+
+            <span class="add" onclick="clicked()">Add tags <box-icon type='solid' class="boxicon" name='folder-plus'></box-icon></box-icon></span>
+            <box-icon  onclick="deletetag()" type='solid' class="boxicon" name='folder-minus'></box-icon>
+            <!-- <button type= class="btn btn-primary add" onclick="this.disabled = true">Add</button> -->
+            <div id="tags">
+
+            </div>
             <button type="submit" class="btn btn-primary">Post</button>
           </form>
      

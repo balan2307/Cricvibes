@@ -188,4 +188,53 @@
     border-color: #c5c5c5;
 }
 
+#tags
+{
+  margin-bottom: 10px;
+}
+input
+{
+  margin:2px;
+}
 
+.alltags
+{
+
+  margin-bottom: 15px;
+
+
+}
+
+.tag{
+  border: 0.5px solid #bdbdbd;
+  margin: 2px;
+  width: fit-content;
+  padding: 4px;
+  background: #0e0900;
+ 
+}
+
+ 
+
+.tag-a
+{
+  color: white!important;
+  text-decoration: none;
+  text-decoration: none!important;
+
+
+}
+.boxicon
+{
+  width: 20px;
+  height: 20px;
+}
+.card-text
+{
+  margin-bottom: 50px;
+}
+
+.pagination
+{
+  justify-content: center;
+}
