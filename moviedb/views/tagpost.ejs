@@ -26,20 +26,34 @@
       <div class="col-lg-6 col-12 col-sm-8 col-content" >
         
        <div class="home-head">
-        <p> <a href="/user/post">Home</a></p>
+        <p>Home</p>
       
 
        </div>
      
 
       <div class="row">
-        
+        <% console.log("Post length",posts.length,posts) %>
         <% for(let i=0;i<posts.length;i++) {%>
-        <div class="col-lg-12  mb-5">
+          
+        <div class="col-lg-12   mb-5">
+          <div class="row  content" style="margin:10px">
+          <div class="col-sm-2 vote">
         
-          <div class="card" >
+  
+          </div>
+
+          <div class="col-sm-10 " style="padding:0">
+
+
+         
+        
+          <div class="card post" id="<%=posts[i].id%>" >
+            <div class="user-det">
+              12
+            </div>
   <img src="<%=posts[i].image%>" class="card-img-top post-img" alt="...">
-  <div class="card-body post-body">
+  <div class="card-body post-body" >
 
     <h5 class="card-title"><%=posts[i].title%></h5>
 
@@ -55,21 +69,21 @@
             </button> -->
           </div>
           <div class="modal-body">
-            <form  action="/user/post/<%=posts[i].id%>?_method=PUT" method="post"  >
+            <form  action="/user/post/<%=posts[i].id%>?_method=PUT" class="needs-validation" novalidate method="post"  >
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <i class='bx bx-window-close' ></i>
-                <input type="text" value=<%=posts[i].title%> name="title" class="form-control" id="title" aria-describedby="emailHelp">
+                <input type="text" value="<%=posts[i].title%>"  required name="title" class="form-control" id="title" aria-describedby="emailHelp">
                
               </div>
               <div class="mb-3">
                 <label for="image" class="form-label ">Image</label>
-                <input type="text" value=<%=posts[i].image%> name="image" class="form-control" id="image">
+                <input type="text" value="<%=posts[i].image%>" name="image" class="form-control" id="image">
               </div>
       
               <div class="mb-3">
                 <label for="text" class="form-label">Text</label>
-                <textarea class="form-control"  name="text" placeholder="Leave a comment here" id="text"><%=posts[i].text%></textarea>
+                <textarea class="form-control"  name="text" required  placeholder="Leave a comment here" id="text"><%=posts[i].text%></textarea>
               </div>
              
               <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -101,10 +115,10 @@
         
       </div>
 
-    <button  class="btn btn-sm btn-delete"> 
-      <a href="#" style="text-decoration:none; color:#463535" data-bs-toggle="modal" data-bs-target="#<%=posts[i].title%><%=posts[i].id%>">Edit</a>
+    
+      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#<%=posts[i].title%><%=posts[i].id%>">Edit</a>
 
-    </button> 
+  
     
    
    
@@ -113,8 +127,13 @@
    
       <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
     </form>
+    <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>" method="GET"  >
+      <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
+    </form>
   </div>
 
+</div>
+</div>
 </div>
 </div>
 <%}%>
@@ -177,5 +196,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script> -->
 <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/stylesheets/blogpost.js"></script>
 </html>

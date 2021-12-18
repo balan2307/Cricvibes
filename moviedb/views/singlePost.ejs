@@ -10,7 +10,6 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
     crossorigin="anonymous"
   />
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/blogposts.css">
    
@@ -34,40 +33,32 @@
      
 
       <div class="row">
-        <% console.log("Post length",posts.length,posts) %>
-        <% for(let i=0;i<posts.length;i++) {%>
+       
+      
+        
+    
           
-        <div class="col-lg-12   mb-5">
-          <div class="row  content" style="margin:10px">
-          <div class="col-2 vote">
-            <div class="wrapper">
-              <div><i class='bx bx-arrow-back bx-md' ></i></div>
-              <div><i class='bx bx-upvote bx-md'></i></div>
-              <div style="text-align: center; font-weight: bold; font-size: 1.5rem;">5</div>
-              <div><i class='bx  bx-downvote bx-md' ></i></div>
-             
-            </div>
-        
-  
-          </div>
+        <div class="col-lg-12  mb-5">
+          <!-- <div class="row">
 
-          <div class="col-10 " style="padding:0">
-
-
-         
-        
-          <div class="card post" id="<%=posts[i].id%>" >
-            <div class="user-det">
+            <div class="col-12 user-name " style="border:1px solid red">
               12
             </div>
-  <img src="<%=posts[i].image%>" class="card-img-top post-img" alt="...">
+          </div> -->
+          
+        <div >
+      <div class="card post"  id="<%=post.id%>" >
+        <div>
+          12
+        </div>
+  <img src="<%=post.image%>" class="card-img-top post-img" alt="...">
   <div class="card-body post-body" >
 
-    <h5 class="card-title"><%=posts[i].title%></h5>
+    <h5 class="card-title"><%=post.title%></h5>
 
-    <p class="card-text"><%=posts[i].text%></p>
+    <p class="card-text"><%=post.text%></p>
 
-    <div class="modal fade" id="<%=posts[i].title%><%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal fade" id="<%=post.title%><%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -77,21 +68,21 @@
             </button> -->
           </div>
           <div class="modal-body">
-            <form  action="/user/post/<%=posts[i].id%>?_method=PUT" class="needs-validation" novalidate method="post"  >
+            <form  action="/user/post/<%=post.id%>?_method=PUT" class="needs-validation" novalidate method="post"  >
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <i class='bx bx-window-close' ></i>
-                <input type="text" value="<%=posts[i].title%>"  required name="title" class="form-control" id="title" aria-describedby="emailHelp">
+                <input type="text" value="<%=post.title%>"  required name="title" class="form-control" id="title" aria-describedby="emailHelp">
                
               </div>
               <div class="mb-3">
                 <label for="image" class="form-label ">Image</label>
-                <input type="text" value="<%=posts[i].image%>" name="image" class="form-control" id="image">
+                <input type="text" value="<%=post.image%>" name="image" class="form-control" id="image">
               </div>
       
               <div class="mb-3">
                 <label for="text" class="form-label">Text</label>
-                <textarea class="form-control"  name="text" required  placeholder="Leave a comment here" id="text"><%=posts[i].text%></textarea>
+                <textarea class="form-control"  name="text" required  placeholder="Leave a comment here" id="text"><%=post.text%></textarea>
               </div>
              
               <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -111,9 +102,9 @@
       <div class="alltags">
         <span style="font-weight:bold;">Tags</span>
         <div style="margin-left:30px; display: inline-block;">
-        <%if(posts[i].tags){%>
-          <% for(let j=0;j<posts[i].tags.length;j++) {%>
-            <span class="tag" ><a class="tag-a" href="/post/<%=posts[i].tags[j]%>"><%=posts[i].tags[j] %> </a></span>
+        <%if(post.tags){%>
+          <% for(let j=0;j<post.tags.length;j++) {%>
+            <span class="tag" ><a class="tag-a" href="/post/<%=post.tags[j]%>"><%=post.tags[j] %> </a></span>
          
             <%}%>
           
@@ -123,48 +114,75 @@
         
       </div>
 
-    
-      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#<%=posts[i].title%><%=posts[i].id%>">Edit</a>
+    <!-- <button  class="btn btn-sm btn-edit">  -->
+      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#<%=post.title%><%=post.id%>">Edit</a>
 
-  
+    <!-- </button>  -->
+
+    
+   
+
+      
     
    
    
-    <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>?_method=DELETE" method="POST"  >
+    <form style="display: inline-block;" action="/user/post/<%=post.id%>?_method=DELETE" method="POST"  >
 
    
       <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
     </form>
-    <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>" method="GET"  >
-      <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
-    </form>
+    <a class="btn btn-sm btn-cmt" data-toggle="collapse" href="#add-comment" role="button" aria-expanded="false" aria-controls="add-comment">
+        Add comment
+      </a>
+    <!-- <form style="display: inline-block;" action="/user/post/<%=post.id%>" method="GET"  >
+      <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Comment</button>
+    </form> -->
   </div>
 
 </div>
 </div>
+<div style="margin-top: 30px;">
+  
+      <form action="/user/post/<%=post.id%>/comments" class="needs-validation" novalidate method="post">
+      <div class="collapse" id="add-comment">
+        <textarea class="form-control"  name="comment" required  placeholder="Leave a comment here" id="text" required></textarea>
+
+        <button class="btn btn-sm mt-3 btn-cmt" type="submit"  aria-expanded="false" aria-controls="collapseExample">
+           Post
+          </button>
+        
+          <!-- data-toggle="collapse" data-target="#add-comment" -->
+      </div>
+     
+    </form>
+  </div>
+
+
+  <div>
+      <h4>Comments</h4>
+      <% for(let comment of post.comments){ %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><%=comment.comment%></p>
+              
+        
+              </div>
+
+        </div>
+    
+      <%}%>
+      
+
+  </div>
+
 </div>
-</div>
-<%}%>
+
       
        
 
       </div>
 
-      <div>
-        <nav aria-label="...">
-          <ul class="pagination pagination-md">
-           
-            <% let n= Math.ceil((total)/2) %>
-            <% for(let i=1;i<=n;i++) {%>
-              <li class="page-item"><a class="page-link " href="/user/post?page=<%=i%>"
-              ><%=i%></a></li>
-             
-            <%}%>
-            
-          
-          </ul>
-        </nav>
-      </div>
+   
 
       </div>
 

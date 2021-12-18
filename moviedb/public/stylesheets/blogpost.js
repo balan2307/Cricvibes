@@ -56,6 +56,29 @@ function deletetag()
 }
 
 
+
+
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
 // const currentLocation=location.href;
 // var current = document.getElementsByClassName("active");
 
@@ -85,5 +108,32 @@ function deletetag()
 //     this.className += " active";
  
     
+//   })
+// }
+
+
+
+
+
+
+// const posts=document.getElementsByClassName('post');
+// let items;
+// let targetElem;
+
+// const btn1=document.getElementsByClassName('tag');
+
+// for(let i=0;i<posts.length;i++)
+// {
+//   posts[i].addEventListener('click',(e)=>
+//   {
+//     items=e.target.classList;
+//     targetElem=e.target;
+//     let validTarget=(items.contains('btn') || items.contains('tag-a'));
+//     if(!validTarget)
+//     {
+//       const id=targetElem.closest('.post').getAttribute('id');
+//       console.log("Target",targetElem.closest('.post').getAttribute('id'))
+//       axios.get('/user/post/'+id+'');
+//     }
 //   })
 // }

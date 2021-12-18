@@ -184,8 +184,9 @@
 .btn-delete
 {
 
-    color: #ad4141;
-    border-color: #c5c5c5;
+  color: #ffffff;
+  border-color: #c5c5c5;
+  background-color: #b50000;
 }
 
 #tags
@@ -237,4 +238,77 @@ input
 .pagination
 {
   justify-content: center;
+}
+
+
+.btn-edit {
+  text-decoration: none;
+    color: #ffffff;
+    background-color: #b9894a;
+
+ 
+}
+
+
+.btn-cmt
+{
+  background: #8f8f8f;
+  color: white;
+}
+
+.btn-cmt:hover
+{
+  color:blanchedalmond;
+}
+
+.post
+{
+  /* padding-left: 0; */
+}
+
+.vote
+{
+ 
+  display: flex;
+    
+    align-items: revert;
+}
+
+.content{
+  border:1px solid #cdbfbf;
+}
+
+.content .card
+{
+  border:none;
+  border-left:1px solid #cdbfbf;
+  border-radius: 0;
+}
+
+.user-det
+{
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.vote
+{
+
+  background-color: #f7f7f7;
+  justify-content: center
+}
+
+.wrapper
+{
+  display: grid;
+  grid-auto-rows:110px;
+  margin-top: 40px;
+}
+
+.bx{
+  height: 100px;
 }

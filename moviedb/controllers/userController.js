@@ -1,8 +1,9 @@
 const bcrypt = require("bcrypt");
 const User=require('../models/user');
+const catchAsync=require('../utils/catchAsync');
 
 
-module.exports.loginUser=async(req,res)=>
+module.exports.loginUser=catchAsync(async(req,res)=>
 {
     
     const {email,password}=req.body;
@@ -20,9 +21,9 @@ module.exports.loginUser=async(req,res)=>
         res.send("Wrong password");
     }
 
-}
+})
 
-module.exports.registerUser=async(req,res)=>
+module.exports.registerUser=catchAsync(async(req,res)=>
 {
     const {username,email,password}=req.body;
     console.log("Test",req.body)
@@ -38,4 +39,4 @@ module.exports.registerUser=async(req,res)=>
     res.render('show');
     }
 
-}
+})

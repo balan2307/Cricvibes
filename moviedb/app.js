@@ -5,6 +5,10 @@ const path=require('path');
 const methodOverride = require("method-override");
 const mongoose  = require('mongoose');
 const cookieParser = require("cookie-parser");
+var morgan = require('morgan')
+app.use(morgan('dev'))
+const ExpressError=require('./utils/ExpressError');
+const Joi=require('joi');
 
 const session = require("express-session");
 app.set('views',path.join(__dirname,'views'));
@@ -50,6 +54,20 @@ app.get('/check',(req,res)=>
 {
     res.send("Check");
   
+})
+
+app.all('*',(req,res,next)=>
+{
+   next(new ExpressError('Something went wrong',404))
+
+})
+
+app.use((err,req,res,next)=>
+{
+  const {statusCode=500 ,message='Something went wrong'}=err;
+  console.log("Error :"+err);
+  
+  res.status(statusCode).render("error",{err});
 })
 
 app.listen(port,()=>

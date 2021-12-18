@@ -8,11 +8,14 @@
           </button> -->
         </div>
         <div class="modal-body">
-          <form  action="/user/post" method="post">
+          <form  action="/user/post" class="needs-validation" method="post" novalidate>
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <i class='bx bx-window-close' ></i>
-              <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+              <input type="text" name="title" class="form-control " id="title" aria-describedby="emailHelp" required>
+              <div class="valid-feedback">
+   
+              </div>
              
             </div>
             <div class="mb-3">
@@ -22,7 +25,10 @@
     
             <div class="mb-3">
               <label for="text" class="form-label">Text</label>
-              <textarea class="form-control" name="text" placeholder="Leave a comment here" id="text"></textarea>
+              <textarea class="form-control" name="text" placeholder="Leave a comment here" id="text" required></textarea>
+              <div class="valid-feedback">
+                
+              </div>
             </div>
 
             <span class="add" onclick="clicked()">Add tags <box-icon type='solid' class="boxicon" name='folder-plus'></box-icon></box-icon></span>

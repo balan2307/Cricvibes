@@ -19,8 +19,14 @@ router.route('/post/:tag')
 
 
 router.route('/user/post/:id')
+.get(postController.viewPost)
 .put(postController.editPost)
 .delete(postController.deletePost)
+
+router.route('/user/post/:id/comments')
+.post(postController.addComment)
+
+
 
 
 
