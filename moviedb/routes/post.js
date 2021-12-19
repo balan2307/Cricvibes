@@ -26,7 +26,8 @@ router.route('/user/post/:id')
 router.route('/user/post/:id/comments')
 .post(postController.addComment)
 
-
+router.route('/user/post/:id/comment/:cid')
+.delete(postController.deleteComment)
 
 
 

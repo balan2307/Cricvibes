@@ -10,6 +10,7 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
     crossorigin="anonymous"
   />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/blogposts.css">
    
@@ -33,24 +34,33 @@
      
 
       <div class="row">
-       
-      
-        
     
+      
           
-        <div class="col-lg-12  mb-5">
-          <!-- <div class="row">
+        <div class="col-lg-12   mb-5">
+          <div class="row  content" style="margin:10px">
+          <div class="col-2 vote">
+            <div class="wrapper">
+              <div><i class='bx bx-arrow-back bx-md' ></i></div>
+              <div><i class='bx bx-upvote upvote bx-md'></i></div>
+          
+              <div style="text-align: center; font-weight: bold; font-size: 1.5rem;">5</div>
+              <div><i class='bx  bx-downvote downvote bx-md' ></i></div>
+             
+            </div>
+        
+  
+          </div>
 
-            <div class="col-12 user-name " style="border:1px solid red">
+          <div class="col-10 " style="padding:0">
+
+
+         
+        
+          <div class="card post" id="<%=post.id%>" >
+            <div class="user-det">
               12
             </div>
-          </div> -->
-          
-        <div >
-      <div class="card post"  id="<%=post.id%>" >
-        <div>
-          12
-        </div>
   <img src="<%=post.image%>" class="card-img-top post-img" alt="...">
   <div class="card-body post-body" >
 
@@ -114,15 +124,10 @@
         
       </div>
 
-    <!-- <button  class="btn btn-sm btn-edit">  -->
+    
       <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#<%=post.title%><%=post.id%>">Edit</a>
 
-    <!-- </button>  -->
-
-    
-   
-
-      
+  
     
    
    
@@ -132,58 +137,68 @@
       <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
     </form>
     <a class="btn btn-sm btn-cmt" data-toggle="collapse" href="#add-comment" role="button" aria-expanded="false" aria-controls="add-comment">
-        Add comment
-      </a>
-    <!-- <form style="display: inline-block;" action="/user/post/<%=post.id%>" method="GET"  >
-      <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Comment</button>
-    </form> -->
+      Add comment
+    </a>
   </div>
 
 </div>
+</div>
+
+
 </div>
 <div style="margin-top: 30px;">
-  
-      <form action="/user/post/<%=post.id%>/comments" class="needs-validation" novalidate method="post">
-      <div class="collapse" id="add-comment">
-        <textarea class="form-control"  name="comment" required  placeholder="Leave a comment here" id="text" required></textarea>
 
-        <button class="btn btn-sm mt-3 btn-cmt" type="submit"  aria-expanded="false" aria-controls="collapseExample">
-           Post
-          </button>
-        
-          <!-- data-toggle="collapse" data-target="#add-comment" -->
-      </div>
-     
-    </form>
-  </div>
+  <form action="/user/post/<%=post.id%>/comments" class="needs-validation" novalidate method="post">
+    <div class="collapse" id="add-comment">
+      <textarea class="form-control"  name="comment" required  placeholder="Leave a comment here" id="text" required></textarea>
 
-
-  <div>
-      <h4>Comments</h4>
-      <% for(let comment of post.comments){ %>
-        <div class="card mb-3">
-            <div class="card-body">
-                <p><%=comment.comment%></p>
-              
-        
-              </div>
-
-        </div>
-    
-      <%}%>
+      <button class="btn btn-sm mt-3 btn-cmt" type="submit"  aria-expanded="false" aria-controls="collapseExample">
+         Post
+        </button>
       
+        <!-- data-toggle="collapse" data-target="#add-comment" -->
+    </div>
+   
+  </form>
 
-  </div>
+  
+</div>
+
+
+<div>
+  <h4>Comments</h4>
+  <% for(let comment of post.comments){ %>
+    <div class="card mb-3">
+        <div class="card-body">
+            <p><%=comment.comment%></p>
+
+          
+          <form style="display: inline-block;" action="/user/post/<%=post.id%>/comment/<%=comment.id%>?_method=DELETE" method="POST"  >
+
+   
+          <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
+        </form>
+          </div>
+
+    </div>
+
+  <%}%>
+  
+
+</div>
+
+
+
+
 
 </div>
 
       
        
 
-      </div>
+</div>
 
-   
-
+    
       </div>
 
 

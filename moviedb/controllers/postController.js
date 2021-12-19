@@ -175,3 +175,22 @@ module.exports.addComment=catchAsync(async(req,res)=>
 
 
 })
+
+
+module.exports.deleteComment=catchAsync(async(req,res)=>
+{
+ 
+
+const {id,cid}=req.params;
+await Post.findByIdAndUpdate(id,{$pull:{comments:cid}});
+await Comment.findByIdAndDelete(cid);
+res.redirect(`/user/post/${id}`);
+
+
+// const foundUser=await Post.findByIdAndDelete(id);
+// if(foundUser)
+// {
+//   // console.log("Updated",foundUser);
+//   res.redirect('/user/post');
+// }
+})
