@@ -39,6 +39,14 @@ app.use(
 const db=process.env.DATABASE;
 const port=process.env.PORT
 
+app.use((req, res, next) => {
+
+  res.locals.user = req.session.user;
+  // console.log("Current user ",res.locals.user)
+  next();
+});
+
+
 
 mongoInit();
 InitRoutes(app);

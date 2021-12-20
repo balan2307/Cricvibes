@@ -7,14 +7,17 @@ module.exports.loginUser=catchAsync(async(req,res)=>
 {
     
     const {email,password}=req.body;
+   
  
     const foundUser=await User.findOne({email});
+    console.log("Body",req.body,foundUser);
     const result=await bcrypt.compare(password, foundUser.password);
     
     if(result)
     {
         req.session.user=foundUser;
-        res.redirect('/user/post')
+        res.redirect('/user/post');
+        console.log("Loggg me")
     }
     else
     {
@@ -36,7 +39,7 @@ module.exports.registerUser=catchAsync(async(req,res)=>
     {
     req.session.user=saved;
     console.log("Saved",saved)
-    res.render('show');
+    res.redirect('/user/post');
     }
 
 })

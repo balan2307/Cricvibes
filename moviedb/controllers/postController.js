@@ -31,9 +31,11 @@ const {title,image,text,tag0,tag1,tag2}=req.body;
 let tags=[tag0,tag1,tag2];
 tags= tags.filter(i => i);
 tags=tags.map(i=>i.toLowerCase());
+let user=req.session.user;
 
-const newPost=new Post({title,image,text,tags})
-// console.log("newPost",newPost);
+const newPost=new Post({title,image,text,tags,user});
+console.log("User",user);
+console.log("newPost",newPost);
 //  const{error}=PostSchema.validate(newPost);
 //  if(error)
 //  {
@@ -66,7 +68,7 @@ let size=2;
 let limit=parseInt(size);
 let skip=(page-1)*size;
 
-const posts=await Post.find().limit(limit).skip(skip);
+const posts=await Post.find().populate('user').limit(limit).skip(skip);
 
 
 res.render('show',{posts,total});
@@ -92,7 +94,7 @@ let limit=parseInt(size);
 let skip=(page-1)*size;
 
 
-const foundPost=await Post.findByTag(tag).limit(limit).skip(skip);
+const foundPost=await Post.findByTag(tag).populate('user').limit(limit).skip(skip);
 let total=await Post.findByTag(tag).count();
 
 
@@ -127,7 +129,7 @@ module.exports.viewPost=catchAsync(async(req,res,next)=>
 const {id}=req.params;
 
 
-const foundPost=await Post.findById(id).populate('comments');
+const foundPost=await Post.findById(id).populate('user').populate('comments');
 const total=1;
 console.log("Inside viewPost",foundPost)
 if(foundPost)
@@ -194,3 +196,98 @@ res.redirect(`/user/post/${id}`);
 //   res.redirect('/user/post');
 // }
 })
+
+
+//voting
+
+
+
+
+module.exports.upVote=catchAsync(async(req,res)=>
+{
+ 
+console.log("IN upvote");  
+const user=req.session.user._id;
+const {id}=req.params;
+const post=await Post.findByIdAndUpdate(id,{$pull:{downvotes:user}});
+const post1=await Post.findByIdAndUpdate(id,{$push:{upvotes:user}});
+
+if(post1)
+{
+  console.log("Sucess")
+  res.send("Success")
+}
+else
+{
+  res.send("Failure;")
+}
+
+
+})
+
+
+module.exports.downVote=catchAsync(async(req,res)=>
+{
+ 
+  console.log("IN Downvote");  
+  const user=req.session.user._id;
+  const {id}=req.params;
+  const post=await Post.findByIdAndUpdate(id,{$pull:{upvotes:user}});
+  const post1=await Post.findByIdAndUpdate(id,{$push:{downvotes:user}});
+  console.log("Saved",post);
+  if(post1)
+{
+  res.send("Success")
+}
+else
+{
+  res.send("Failure;")
+}
+
+
+})
+
+module.exports.removedownVote=catchAsync(async(req,res)=>
+{
+ 
+  console.log("IN remove downvote");  
+  const user=req.session.user._id;
+  const {id}=req.params;
+  const post=await Post.findByIdAndUpdate(id,{$pull:{downvotes:user}});
+  console.log("Saved",post)
+
+  if(post)
+{
+  res.send("Success")
+}
+else
+{
+  res.send("Failure;")
+}
+
+
+})
+
+
+module.exports.removeupVote=catchAsync(async(req,res)=>
+{
+ 
+
+  console.log("IN remove upvote");  
+  const user=req.session.user._id;
+  const {id}=req.params;
+  const post=await Post.findByIdAndUpdate(id,{$pull:{upvotes:user}});
+  console.log("Saved",post)
+  if(post)
+{
+  res.send("Success")
+}
+else
+{
+  res.send("Failure;")
+}
+
+
+})
+
+

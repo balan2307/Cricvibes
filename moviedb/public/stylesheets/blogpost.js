@@ -112,6 +112,7 @@ for (let i = 0; i < posts.length; i++) {
 
 function icounter(ele) {
   let count = parseInt(ele.innerText) || 0;
+  
 
   count += 1;
   ele.innerText = count;
@@ -132,24 +133,38 @@ for (let i = 0; i < Upvotes.length; i++) {
   Upvotes[i].addEventListener("click", (e) => {
     let targetELem = e.target;
     let items = targetELem.classList;
+    check=targetELem;
+    let id=targetELem.parentNode.parentNode.getAttribute('id');
+    console.log("Post track",id);
     let downv = targetELem.parentNode.parentNode.querySelector(".downvote");
     let res = targetELem.parentNode.parentNode.querySelector("#vote-count");
+    // axios.post(`/user/post/${id}/upvote`);
+   
 
     if (items.contains("bx-upvote") && !(items.contains("bxs-upvote"))) {
       console.log("inc if")
       Upvotes[i].classList.toggle("bxs-upvote");
       icounter(res);
+      //upvote and check if downvoted
+      axios.post(`/user/post/${id}/upvote`).then((res)=>console.log("response",res));
       if (downv.classList.contains("bxs-downvote")) {
         downv.classList.remove("bxs-downvote");
+        icounter(res); //test
+
       }
     } 
     else if (items.contains("bxs-upvote") && items.contains("bx-upvote")  ) {
-      console.log("inc else")
+      console.log("inc else 1")
       dcounter(res);
-    
+      //remove upvote
+      axios.post(`/user/post/${id}/removeupvote`).then((res)=>console.log("response",res));
+      
       Upvotes[i].classList.remove("bxs-upvote");
 
     }
+ 
+    console.log("next");
+
   });
 }
 
@@ -161,19 +176,28 @@ for (let i = 0; i < Downvotes.length; i++) {
     let items = targetELem.classList;
 
     let upv = targetELem.parentNode.parentNode.querySelector(".upvote");
+    let id=targetELem.parentNode.parentNode.getAttribute('id');
+    console.log("Post track",id);
 
     if (items.contains("bx-downvote") && !(items.contains("bxs-downvote"))) {
       dcounter(res);
       Downvotes[i].classList.toggle("bxs-downvote");
-      console.log("if 2")
+      console.log("if 2");
+      //downvote and check for upvote
+      axios.post(`/user/post/${id}/downvote`).then((res)=>console.log("response",res));
+   
 
       if (upv.classList.contains("bxs-upvote")) {
         upv.classList.remove("bxs-upvote");
+        dcounter(res);
       }
     } else if (items.contains("bxs-downvote") && items.contains("bx-downvote") ) {
       console.log("else 2")
       icounter(res);
       Downvotes[i].classList.remove("bxs-downvote");
+
+      //remove downvote
+      axios.post(`/user/post/${id}/removedownvote`).then((res)=>console.log("response",res));
     }
   });
 }

@@ -4,32 +4,45 @@ const router = express.Router();
 const postController=require('../controllers/postController')
 
 
-
+const isLoggedin=require('../middlewares/user_auth')
 
 router.route('/home')
 .get(postController.post)
 
 router.route('/user/post')
-.get(postController.getPost)
-.post(postController.createPost)
+.get(isLoggedin,postController.getPost)
+.post(isLoggedin,postController.createPost)
 
 
 router.route('/post/:tag')
-.get(postController.getTaggedPost)
+.get(isLoggedin,postController.getTaggedPost)
 
 
 router.route('/user/post/:id')
-.get(postController.viewPost)
-.put(postController.editPost)
-.delete(postController.deletePost)
+.get(isLoggedin, postController.viewPost)
+.put(isLoggedin,postController.editPost)
+.delete(isLoggedin,postController.deletePost)
 
 router.route('/user/post/:id/comments')
-.post(postController.addComment)
+.post(isLoggedin,postController.addComment)
 
 router.route('/user/post/:id/comment/:cid')
-.delete(postController.deleteComment)
+.delete(isLoggedin,postController.deleteComment)
 
 
 
+router.route('/user/post/:id/upvote')
+.post(isLoggedin,postController.upVote)
+
+router.route('/user/post/:id/downvote')
+.post(isLoggedin,postController.downVote)
+
+
+router.route('/user/post/:id/removedownvote')
+.post(isLoggedin,postController.removedownVote)
+
+
+router.route('/user/post/:id/removeupvote')
+.post(isLoggedin,postController.removeupVote)
 
 module.exports=router;

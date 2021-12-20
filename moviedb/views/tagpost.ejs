@@ -39,26 +39,27 @@
           
         <div class="col-lg-12   mb-5">
           <div class="row  content" style="margin:10px">
-          <div class="col-2 vote">
-            <div class="wrapper">
-              <div><i class='bx bx-arrow-back bx-md' ></i></div>
-              <div><i class='bx bx-upvote bx-md'></i></div>
-              <div style="text-align: center; font-weight: bold; font-size: 1.5rem;">5</div>
-              <div><i class='bx  bx-downvote bx-md' ></i></div>
+          <div class="col-2 col-lg-1 vote">
+            <div class="wrapper" id="<%=posts[i]._id%>"> 
+              <!-- <div><i class='bx bx-arrow-back bx-sm' ></i></div> -->
+              <div><i class='bx bx-upvote upvote bx-sm <%= posts[i].upvotes.includes(user._id) ? 'bxs-upvote' : ''%> '></i></div>
+              <div id="vote-count" style="text-align: center; font-weight: bold; font-size: 1.2rem;">
+                <%= (posts[i].upvotes.length-posts[i].downvotes.length)%></div>
+              <div><i class='bx  bx-downvote downvote bx-sm <%= posts[i].downvotes.includes(user._id) ? 'bxs-downvote' : ''%>' ></i></div>
              
             </div>
         
   
           </div>
 
-          <div class="col-10 " style="padding:0">
+          <div class="col-10 col-lg-11 " style="padding:0">
 
 
          
         
           <div class="card post" id="<%=posts[i].id%>" >
             <div class="user-det">
-              12
+              Posted by - <%=posts[i].user.username%>
             </div>
   <img src="<%=posts[i].image%>" class="card-img-top post-img" alt="...">
   <div class="card-body post-body" >
@@ -67,7 +68,7 @@
 
     <p class="card-text"><%=posts[i].text%></p>
 
-    <div class="modal fade" id="<%=posts[i].title%><%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal fade" id="title<%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -80,7 +81,7 @@
             <form  action="/user/post/<%=posts[i].id%>?_method=PUT" class="needs-validation" novalidate method="post"  >
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <i class='bx bx-window-close' ></i>
+          
                 <input type="text" value="<%=posts[i].title%>"  required name="title" class="form-control" id="title" aria-describedby="emailHelp">
                
               </div>
@@ -123,8 +124,8 @@
         
       </div>
 
-    
-      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#<%=posts[i].title%><%=posts[i].id%>">Edit</a>
+      <% if(posts[i].user._id==user._id) {%>
+      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#title<%=posts[i].id%>">Edit</a>
 
   
     
@@ -135,6 +136,7 @@
    
       <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
     </form>
+    <%}%>
     <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>" method="GET"  >
       <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
     </form>

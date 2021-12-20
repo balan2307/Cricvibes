@@ -22,7 +22,21 @@ const postSchema=new mongoose.Schema({
     comments:[{
         type:Schema.Types.ObjectId,
         ref:'Comment'
-    }]
+    }],
+    upvotes:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    downvotes:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    user:{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+
+    }
+
 })
 
 
