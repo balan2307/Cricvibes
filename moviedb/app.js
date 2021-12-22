@@ -1,3 +1,6 @@
+// if(process.env.NODE_ENV!=="production"){
+//   require('dotenv').config();
+// }
 const express=require('express');
 const dotenv=require('dotenv');
 const app=express();
@@ -9,6 +12,10 @@ var morgan = require('morgan')
 app.use(morgan('dev'))
 const ExpressError=require('./utils/ExpressError');
 const Joi=require('joi');
+const {storage}=require('./cloudinary')
+const multer  = require('multer');
+const upload = multer({ storage })
+
 
 const session = require("express-session");
 app.set('views',path.join(__dirname,'views'));

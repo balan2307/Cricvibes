@@ -1,28 +1,26 @@
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal2" aria-labelledby="exampleModalLabel2" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <i class='bx bx-window-close'>rf</i>
-          </button> -->
+    
         </div>
         <div class="modal-body">
-          <form  action="/user/post" method="post">
+          <form  action="" method="post" id="edit-form" enctype="multipart/form-data">
             <div class="mb-3">
-              <label for="title" class="form-label"><%=posts[i].title%></label>
-              <i class='bx bx-window-close' ></i>
-              <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+              <label for="e-title" class="form-label">Title</label>
+             
+              <input type="text" name="title" class="form-control" id="e-title" aria-describedby="emailHelp">
              
             </div>
             <div class="mb-3">
-              <label for="image" class="form-label "><%=posts[i].image%></label>
-              <input type="text" name="image" class="form-control" id="image">
+              <label for="e-image" class="form-label ">Image</label>
+              <input type="file" id="e-image" name="image" value="">
             </div>
     
             <div class="mb-3">
-              <label for="text" class="form-label"><%=posts[i].text%></label>
-              <textarea class="form-control" name="text" placeholder="Leave a comment here" id="text"></textarea>
+              <label for="e-text" class="form-label">Text</label>
+              <textarea class="form-control" name="text" placeholder="Leave a comment here" id="e-text"></textarea>
             </div>
            
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -37,4 +35,76 @@
         </div>
       </div>
     </div>
-    </div>
+    </div> -->
+
+
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content create-modal">
+          <!-- <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Post your views</h5>
+       
+          </div> -->
+          <div class="modal-body ">
+            
+          <div class="d-flex justify-content-end ">
+    <i class='bx  bx-sm bx-window-close ' data-bs-dismiss="modal"></i>
+           
+          </div>
+            <form  action="/"   id="edit-form" class="needs-validation" method="post" novalidate enctype="multipart/form-data">
+              <div class="mb-3">
+                <!-- <label for="title" class="form-label">Title</label> -->
+                
+                <input type="text" name="title" id="e-title" aria-describedby="emailHelp" required
+                placeholder="What's happening?">
+                <div class="valid-feedback">
+     
+                </div>
+               
+              </div>
+              <div class="mb-3">
+                <!-- <label for="image" class="form-label ">Image</label>
+                <input type="text" name="image" class="form-control" id="image"> -->
+                <!-- <input type="file" name="image" id="image-upload"> -->
+              </div>
+              <img src="" alt="" class="preview" style="width: 100%;">
+      
+              <div class="mb-3">
+                <!-- <label for="text" class="form-label">Text</label> -->
+                <textarea name="text" placeholder="Would you like describe more?" id="e-text" data-enable-grammarly="false" required></textarea>
+                <div class="valid-feedback">
+                  
+                </div>
+              </div>
+  
+              <span class="add" onclick="clicked()">Add tags <box-icon type='solid' class="boxicon" name='folder-plus'></box-icon></box-icon></span>
+              <box-icon  onclick="deletetag()" type='solid' class="boxicon" name='folder-minus'></box-icon>
+              <!-- <button type= class="btn btn-primary add" onclick="this.disabled = true">Add</button> -->
+              <div id="tags">
+  
+              </div>
+              <div class="img-upload" style="margin-bottom: 20px;">
+                <label class="filelabel">
+                 
+                  </i>
+                  <span class="title">
+                      <i class='bx bx bx-image-alt'></i>
+                  </span>
+              
+                  <input class="FileUpload1" id="FileInput" id="e-image" name="image" type="file"/>
+                  
+                  
+              </label>
+              </div>
+              <div class="d-flex justify-content-end">
+              <button style="background-color: black;" type="submit" class="btn btn-primary">Post</button>
+              </div>
+            </form>
+       
+          </div>
+      
+       
+        </div>
+      </div>
+      </div>

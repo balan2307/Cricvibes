@@ -62,14 +62,16 @@
             <div class="user-det">
              Posted by - <%=posts[i].user.username%>
             </div>
-  <img src="<%=posts[i].image%>" class="card-img-top post-img" alt="...">
+  <img src="<%=posts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
   <div class="card-body post-body" >
 
     <h5 class="card-title"><%=posts[i].title%></h5>
 
     <p class="card-text"><%=posts[i].text%></p>
+
    
-    <div class="modal fade" id="title<%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+   <%- include('partials/editModal') %>
+    <!-- <div class="modal fade" id="title<%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -77,7 +79,7 @@
            
           </div>
           <div class="modal-body">
-            <form  action="/user/post/<%=posts[i].id%>?_method=PUT" class="needs-validation" novalidate method="post"  >
+            <form  action="/user/post/<%=posts[i].id%>?_method=PUT" class="needs-validation" novalidate method="post" enctype="multipart/form-data" >
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 
@@ -86,7 +88,7 @@
               </div>
               <div class="mb-3">
                 <label for="image" class="form-label ">Image</label>
-                <input type="text" value="<%=posts[i].image%>" name="image" class="form-control" id="image">
+                <input type="file" name="image" value="<%=posts[i].image.url%>">
               </div>
       
               <div class="mb-3">
@@ -106,7 +108,7 @@
           </div>
         </div>
       </div>
-      </div>
+      </div> -->
 
       <div class="alltags">
         <span style="font-weight:bold;">Tags</span>
@@ -126,7 +128,7 @@
 
 
      <% if(posts[i].user._id==user._id) {%>
-      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#title<%=posts[i].id%>">Edit</a>
+      <a href="#" class="btn btn-sm btn-edit" onclick="showEditModal('<%=posts[i]._id%>')" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#exampleModal2" >Edit</a>
 
   
     
@@ -177,7 +179,7 @@
 
 
 
-      <div class="d-none d-lg-inline-block col-lg-3 col-more" >
+      <div class=" d-lg-inline-block col-lg-3 col-more" >
         <!-- Modal -->
         <%- include('partials/createModal') %>
 

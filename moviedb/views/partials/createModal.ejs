@@ -1,31 +1,37 @@
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+      <div class="modal-content create-modal">
+        <!-- <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Post your views</h5>
-          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <i class='bx bx-window-close'>rf</i>
-          </button> -->
+     
+        </div> -->
+        <div class="modal-body ">
+          
+        <div class="d-flex justify-content-end ">
+  <i class='bx  bx-sm bx-window-close ' data-bs-dismiss="modal"></i>
+         
         </div>
-        <div class="modal-body">
-          <form  action="/user/post" class="needs-validation" method="post" novalidate>
+          <form  action="/user/post" class="needs-validation" method="post" novalidate enctype="multipart/form-data">
             <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
+              <!-- <label for="title" class="form-label">Title</label> -->
               
-              <input type="text" name="title" class="form-control " id="title" aria-describedby="emailHelp" required>
+              <input type="text" name="title" id="title" aria-describedby="emailHelp" required
+              placeholder="What's happening?">
               <div class="valid-feedback">
    
               </div>
              
             </div>
             <div class="mb-3">
-              <label for="image" class="form-label ">Image</label>
-              <input type="text" name="image" class="form-control" id="image">
+              <!-- <label for="image" class="form-label ">Image</label>
+              <input type="text" name="image" class="form-control" id="image"> -->
+              <!-- <input type="file" name="image" id="image-upload"> -->
             </div>
+            <img src="" alt="" class="preview" style="width: 100%;">
     
             <div class="mb-3">
-              <label for="text" class="form-label">Text</label>
-              <textarea class="form-control" name="text" placeholder="Leave a comment here" id="text" required></textarea>
+              <!-- <label for="text" class="form-label">Text</label> -->
+              <textarea name="text" placeholder="Would you like describe more?" id="text" data-enable-grammarly="false" required></textarea>
               <div class="valid-feedback">
                 
               </div>
@@ -37,16 +43,27 @@
             <div id="tags">
 
             </div>
-            <button type="submit" class="btn btn-primary">Post</button>
+            <div class="img-upload" style="margin-bottom: 20px;">
+              <label class="filelabel">
+               
+                </i>
+                <span class="title">
+                    <i class='bx bx bx-image-alt'></i>
+                </span>
+            
+                <input class="FileUpload1" id="FileInput" name="image" type="file"/>
+                
+                
+            </label>
+            </div>
+            <div class="d-flex justify-content-end">
+            <button style="background-color: black;" type="submit" class="btn btn-primary">Post</button>
+            </div>
           </form>
      
         </div>
     
      
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-         
-        </div>
       </div>
     </div>
     </div>

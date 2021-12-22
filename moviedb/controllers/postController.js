@@ -6,6 +6,8 @@ const expressError=require('../utils/ExpressError');
 const Comment=require('../models/comment');
 const { findById } = require('../models/comment');
 
+const {cloudinary}=require('../cloudinary');
+
 
 module.exports.post=async(req,res)=>
 {
@@ -26,16 +28,23 @@ const PostSchema=Joi.object({
   
 })
 
+
+
+
 const {title,image,text,tag0,tag1,tag2}=req.body;
 
 let tags=[tag0,tag1,tag2];
 tags= tags.filter(i => i);
 tags=tags.map(i=>i.toLowerCase());
 let user=req.session.user;
+const {path,filename}=req.file;
 
 const newPost=new Post({title,image,text,tags,user});
+console.log("Files",req.file)
+newPost.image={url:path,filename:filename};
 console.log("User",user);
 console.log("newPost",newPost);
+
 //  const{error}=PostSchema.validate(newPost);
 //  if(error)
 //  {
@@ -110,10 +119,26 @@ console.log("total",total)
 module.exports.editPost=catchAsync(async(req,res,next)=>
 {
  
+  
 const {title,image,text}=req.body;
 const {id}=req.params;
+const getUser=await Post.findById(id);
+console.log("File check",req.file);
+let imageobj={};
+if(!req.file)
+{ 
 
-const foundUser=await Post.findByIdAndUpdate(id,{title,image,text});
+  imageobj=getUser.image;
+}
+else
+{
+  const {path,filename}=req.file;
+  imageobj={url:path,filename:filename};
+}
+
+
+
+const foundUser=await Post.findByIdAndUpdate(id,{title,image:imageobj,text});
 if(foundUser)
 {
   // console.log("Updated",foundUser);
@@ -129,7 +154,14 @@ module.exports.viewPost=catchAsync(async(req,res,next)=>
 const {id}=req.params;
 
 
-const foundPost=await Post.findById(id).populate('user').populate('comments');
+const foundPost=await Post.findById(id).populate('user').populate({
+  path:'comments',
+  populate:{
+    path:'user',
+    select:{'_id':1,'username':1}
+  }
+ 
+});
 const total=1;
 console.log("Inside viewPost",foundPost)
 if(foundPost)
@@ -140,13 +172,30 @@ if(foundPost)
 })
 
 
+module.exports.getPostdet=catchAsync(async(req,res,next)=>
+{
+ 
+
+const {id}=req.params;
+console.log("Getpostdet called");
+const foundPost=await Post.findById(id);
+console.log("getpostdet",foundPost);
+res.send(foundPost);
+
+
+})
+
+
 
 module.exports.deletePost=catchAsync(async(req,res)=>
 {
  
 
 const {id}=req.params;
+const findPost=await Post.findById(id);
+const filename=findPost.image.filename;
 
+await cloudinary.uploader.destroy(filename);
 const foundUser=await Post.findByIdAndDelete(id);
 if(foundUser)
 {
@@ -163,9 +212,10 @@ module.exports.addComment=catchAsync(async(req,res)=>
  
  const {id}=req.params;
  const {comment}=req.body;
- console.log("Check",id,comment) 
+ console.log("Check",id,comment);
+ const user=req.session.user._id; 
  const foundPost=await Post.findById(id);
- const newComment=new Comment({comment});
+ const newComment=new Comment({comment,user});
  console.log("Comment",newComment)
  foundPost.comments.push(newComment);
  await newComment.save();

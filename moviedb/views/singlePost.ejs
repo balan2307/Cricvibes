@@ -174,14 +174,17 @@
   <% for(let comment of post.comments){ %>
     <div class="card mb-3">
         <div class="card-body">
-            <p><%=comment.comment%></p>
+            <% console.log("comment",comment) %>
+            <p><%=comment.comment%>   </p>
+            <!-- <span><%= comment.user.username%></span> -->
 
-            
+            <% if(comment.user._id==user._id){%>
           <form style="display: inline-block;" action="/user/post/<%=post.id%>/comment/<%=comment.id%>?_method=DELETE" method="POST"  >
 
    
           <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
         </form>
+        <%}%>
        
           </div>
 
