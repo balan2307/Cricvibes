@@ -1,8 +1,8 @@
 const btn = document.getElementsByClassName("add")[0];
-const tags = document.getElementById("tags");
+let tags = document.getElementsByClassName("tags");
 let i = 0;
 let pageitems = document.getElementsByClassName("page-item");
-
+let close;
 // btn.addEventListener('click',()=>
 // {
 //     console.log("Clicked");
@@ -20,21 +20,42 @@ let pageitems = document.getElementsByClassName("page-item");
 
 // })
 
-function clicked() {
+function clicked(e) {
+ 
+  console.log("clicked",e)
+  close=e;
+  tags=close.nextElementSibling.nextElementSibling;
   const c = tags.childElementCount;
 
   let tg = "tag" + c;
   if (tags.childElementCount < 3) {
     let input = document.createElement("input");
+    input.classList.add('tagp')
     input.setAttribute("name", tg);
     tags.appendChild(input);
   }
 }
 
+
+// function clicked_edit(n) {
+ 
+ 
+//   console.log("N",n)
+//   tags=document.getElementById("tags-edit");
+//   const c = tags.childElementCount;
+
+//   let tg = "tag" + c;
+//   for(let i=0;i<n;i++) {
+//     let input = document.createElement("input");
+//     input.setAttribute("name", tg);
+//     tags.appendChild(input);
+//   }
+// }
+
 function deletetag() {
   const c = tags.childElementCount;
 
-  let tg = "tag" + c;
+  let tg = "tags-edit" + c;
   if (tags.childElementCount > 0) {
     tags.removeChild(tags.lastChild);
   }
@@ -219,26 +240,27 @@ $("#FileInput").change(function() {
 });
 
 let post;
-function showEditModal(id)
-{
+// function showEditModal(id)
+// {
 
-  console.log("CAlled",id);
-  axios.get(`/post/${id}/getdet`).then((res)=>{
+//   console.log("CAlled",id);
+//   axios.get(`/post/${id}/getdet`).then((res)=>{
 
-    console.log("response",res.data)
-    post=res.data;
-    document.querySelector('#edit-form').action=`/user/post/${id}?_method=PUT`;
-    document.querySelector("#e-title").value = post.title;
-    // document.querySelector("#e-image").src = post.image.url;
-    document.querySelector("#e-text").value = post.text;
-    document.querySelector(".preview").src=post.image.url;
-    // console.log("Post",post.text)
+//     console.log("response",res.data)
+//     clicked_edit(res.data.tags.length)
+//     post=res.data;
+//     document.querySelector('#edit-form').action=`/user/post/${id}?_method=PUT`;
+//     document.querySelector("#e-title").value = post.title;
+//     // document.querySelector("#e-image").src = post.image.url;
+//     document.querySelector("#e-text").value = post.text;
+//     document.querySelector(".preview").src=post.image.url;
+//     // console.log("Post",post.text)
  
 
-  });
+//   });
 
 
-}
+// }
 
 
 

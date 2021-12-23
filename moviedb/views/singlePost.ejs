@@ -63,53 +63,16 @@
             <div class="user-det">
               Posted by - <%=post.user.username%>
             </div>
-  <img src="<%=post.image%>" class="card-img-top post-img" alt="...">
+  <img src="<%=post.image.url%>" class="card-img-top post-img" alt="...">
   <div class="card-body post-body" >
 
     <h5 class="card-title"><%=post.title%></h5>
 
     <p class="card-text"><%=post.text%></p>
 
-    <div class="modal fade" id="title<%=post.id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit your post</h5>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <i class='bx bx-window-close'>rf</i>
-            </button> -->
-          </div>
-          <div class="modal-body">
-            <form  action="/user/post/<%=post.id%>?_method=PUT" class="needs-validation" novalidate method="post"  >
-              <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-               
-                <input type="text" value="<%=post.title%>"  required name="title" class="form-control" id="title" aria-describedby="emailHelp">
-               
-              </div>
-              <div class="mb-3">
-                <label for="image" class="form-label ">Image</label>
-                <input type="text" value="<%=post.image%>" name="image" class="form-control" id="image">
-              </div>
-      
-              <div class="mb-3">
-                <label for="text" class="form-label">Text</label>
-                <textarea class="form-control"  name="text" required  placeholder="Leave a comment here" id="text"><%=post.text%></textarea>
-              </div>
-             
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-            </form>
-       
-          </div>
-      
-       
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            
-          </div>
-        </div>
-      </div>
-      </div>
+    <%- include('partials/editModal') %>
+
+
 
       <div class="alltags">
         <span style="font-weight:bold;">Tags</span>
@@ -127,7 +90,7 @@
       </div>
 
       <% if(post.user._id==user._id) {%>    
-      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#title<%=post.id%>">Edit</a>
+      <a href="#" class="btn btn-sm btn-edit" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#exampleModal2"   onclick="showEditModal('<%=post._id%>')">Edit</a>
 
   
     
@@ -247,4 +210,5 @@
 <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/stylesheets/blogpost.js"></script>
+<script src="/stylesheets/editModal.js"></script>
 </html>

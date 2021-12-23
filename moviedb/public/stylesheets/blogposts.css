@@ -393,3 +393,9 @@ color: #1665c4;
 {
   transition: all 0.5s ease-in-out;
 }
+
+.tagp
+{
+  width: 100px;
+  height: 20px;
+}

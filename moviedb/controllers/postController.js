@@ -120,7 +120,23 @@ module.exports.editPost=catchAsync(async(req,res,next)=>
 {
  
   
-const {title,image,text}=req.body;
+const {title,image,text,tag0,tag1,tag2}=req.body;
+let tags=[];
+
+if(tag0)
+{
+  tags.push(tag0)
+}
+if(tag1)
+{
+  tags.push(tag1)
+}
+if(tag2)
+{
+  tags.push(tag2)
+}
+
+console.log("Tags",tags);
 const {id}=req.params;
 const getUser=await Post.findById(id);
 console.log("File check",req.file);
@@ -138,7 +154,7 @@ else
 
 
 
-const foundUser=await Post.findByIdAndUpdate(id,{title,image:imageobj,text});
+const foundUser=await Post.findByIdAndUpdate(id,{title,image:imageobj,text,tags});
 if(foundUser)
 {
   // console.log("Updated",foundUser);
