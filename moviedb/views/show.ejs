@@ -23,7 +23,13 @@
     <div class="row" style="height: 100vh;">
       <div class="col-lg-3  d-none d-sm-inline-block col-sm-4 col-prof justify-content-center" >
         <h4>Wassup</h4>
+        <div class="profile">
+          <a href="/user/profile/<%=user._id%>">
+          <p style="margin-top: 50px;"> <span class="profile_head">Profile<span></span> <span><i class='bx bx-md bxs-user'></i></span></p>
+        </a>
+        </div>
       </div>
+ 
       <div class="col-lg-6 col-12 col-sm-8 col-content" >
         
        <div class="home-head">
@@ -71,6 +77,7 @@
 
    
    <%- include('partials/editModal') %>
+      <%- include('partials/createModal') %>
     <!-- <div class="modal fade" id="title<%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -179,12 +186,12 @@
 
 
 
-      <div class=" d-lg-inline-block col-lg-3 col-more" >
+      <div class="d-none d-lg-inline-block col-lg-3 col-more" >
         <!-- Modal -->
-        <%- include('partials/createModal') %>
+     
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-          Post your thoughts
+          Post something
           </button>
       </div>
     </div>

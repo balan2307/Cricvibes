@@ -125,12 +125,15 @@
   border-right:1px solid #bdbcbc;
   padding:10px;
   text-align: center;
+  background-color: #ededed;
 
 }
 
 .col-more
 {
   border-left:1px solid #bdbcbc;
+  background-color: #ededed;
+  
   
 
   padding:10px;
@@ -350,7 +353,7 @@ input
 
 .filelabel {
   width: 120px;
-  border: 2px dashed grey;
+  /* border: 2px dashed grey; */
   border-radius: 5px;
   display: block;
 
@@ -373,29 +376,39 @@ input
 color: grey;
 transition: 200ms color;
 }
-.filelabel:hover {
+/* .filelabel:hover {
 border: 2px solid #1665c4;
 }
 .filelabel:hover i,
 .filelabel:hover .title {
 color: #1665c4;
-}
-#FileInput{
+} */
+#FileInput,#FileInput_edit,#ProfileInput,#CoverInput{
   display:none;
 }
 
-.preview
+#preview,#preview_edit
 {
   border-radius:0.8em;
 }
 
 #exampleModal2
 {
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .tagp
 {
   width: 100px;
   height: 20px;
+}
+
+
+.profile_head
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
 }

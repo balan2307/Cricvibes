@@ -228,15 +228,33 @@ function display(input) {
   if (input.files && input.files[0]) {
      var reader = new FileReader();
      reader.onload = function(event) {
-        $('.preview').attr('src', event.target.result);
+        $('#preview').attr('src', event.target.result);
      }
      reader.readAsDataURL(input.files[0]);
   }
 }
 
+
+function display_edit(input) {
+  if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function(event) {
+        $('#preview_edit').attr('src', event.target.result);
+     }
+     reader.readAsDataURL(input.files[0]);
+  }
+}
+
+
+
 $("#FileInput").change(function() {
   console.log("Jquery");
   display(this);
+});
+
+$("#FileInput_edit").change(function() {
+  console.log("Jquery");
+  display_edit(this);
 });
 
 let post;

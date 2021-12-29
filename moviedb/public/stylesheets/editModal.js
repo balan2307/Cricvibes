@@ -1,6 +1,10 @@
 function showEditModal(id)
 {
 
+
+  setTimeout(function() {
+    $('#exampleModal2').modal();
+}, 10000);
   console.log("CAlled",id);
   axios.get(`/post/${id}/getdet`).then((res)=>{
 
@@ -11,7 +15,7 @@ function showEditModal(id)
     document.querySelector("#e-title").value = post.title;
     // document.querySelector("#e-image").src = post.image.url;
     document.querySelector("#e-text").value = post.text;
-    document.querySelector(".preview").src=post.image.url;
+    document.querySelector("#preview_edit").src=post.image.url;
     // console.log("Post",post.text)
  
 
@@ -19,6 +23,7 @@ function showEditModal(id)
 
 
 }
+
 
 
 
@@ -32,7 +37,10 @@ function clicked_edit(n,alltags) {
    check=tags;
     const c = tags.childElementCount;
   
-    
+    for(let j=0;j<c;j++)
+  {
+    tags.removeChild(tags.lastChild);
+  }
     
     for(let i=0;i<n;i++) {
       let input = document.createElement("input");
@@ -52,7 +60,11 @@ function add_tags_edit(n) {
  
   console.log("N",n)
  let tags=document.getElementById("tags-edit");
+  
+ 
   const c = tags.childElementCount;
+
+  
 
   let tg = "tag" + c;
   if(c<3)
@@ -77,3 +89,5 @@ function add_tags_edit(n) {
       tags.removeChild(tags.lastChild);
     }
   }
+
+

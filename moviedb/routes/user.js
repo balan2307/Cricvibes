@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+const {storage}=require('../cloudinary')
+const multer  = require('multer');
+const upload = multer({ storage })
 const userController=require('../controllers/userController')
 
 router.route('/login')
@@ -18,4 +21,16 @@ router.route('/check')
 router.route('/home')
 .get((req,res)=>res.render('show'))
 
+
+router.route('/profile/:id')
+.get(userController.getProfile)
+.put(upload.fields([{
+  name: 'profile_image', maxCount: 1
+}, {
+  name: 'cover_image', maxCount: 1
+}]) ,userController.updateProfile)
+
+
+router.route('/:id/profile/coverimage')
+.post(userController.deleteImage);
 module.exports=router;
