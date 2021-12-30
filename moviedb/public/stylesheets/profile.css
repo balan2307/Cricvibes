@@ -174,7 +174,8 @@ border-color: #dee2e6 #dee2e6 #fff;
   display: flex;
   justify-content: center;
   background-position: top;
-  background-size: cover;
+  /* background-size: cover; */
+  background-size: 100% 100%;
 
 }
 
@@ -219,7 +220,8 @@ border-color: #dee2e6 #dee2e6 #fff;
   /* background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp); */
   height: 150px;
   background-position:top;
-  background-size: cover;
+  background-size: 100% 100%;
+  
 }
 
 .profile-delete-icon
