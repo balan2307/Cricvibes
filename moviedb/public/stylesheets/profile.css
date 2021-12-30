@@ -128,10 +128,10 @@ border-color: #dee2e6 #dee2e6 #fff;
 {
 
   border-radius: 50%;
-  border:none;
+  /* border:none; */
 
-  height: 140px;
-  width: 140px;
+  height: 130px;
+  width: 130px;
   /* margin-left: 20px; */
   margin-top: 150px;
 
@@ -163,6 +163,10 @@ border-color: #dee2e6 #dee2e6 #fff;
 }
 
 
+
+
+
+
 .prof-image
 {
   /* background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp); */
@@ -188,9 +192,10 @@ border-color: #dee2e6 #dee2e6 #fff;
 }
 .upload-icon
 {
-  margin-left: 60px;
+  margin-left: 10px;
   position: relative;
   margin-top: 140px;
+  color: white;
 }
 
 .cover-upload-icon
@@ -198,6 +203,7 @@ border-color: #dee2e6 #dee2e6 #fff;
   position: absolute;
   margin-left: 210px;
   margin-top: 60px;
+  color: white;
 }
 
 .cover-delete-icon
@@ -205,6 +211,7 @@ border-color: #dee2e6 #dee2e6 #fff;
   margin-left: 430px;
   margin-top: 5px;
   position: absolute;
+  color: white;
 }
 
 .profile-modal-upload
@@ -213,4 +220,11 @@ border-color: #dee2e6 #dee2e6 #fff;
   height: 150px;
   background-position:top;
   background-size: cover;
+}
+
+.profile-delete-icon
+{
+  position: relative;
+  color: white;
+  margin-left: 40px;
 }

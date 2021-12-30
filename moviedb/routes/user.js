@@ -33,4 +33,10 @@ router.route('/profile/:id')
 
 router.route('/:id/profile/coverimage')
 .post(userController.deleteImage);
+
+router.route('/:id/profile/profileimage')
+.post(userController.deleteprofileImage);
+
+
+
 module.exports=router;

@@ -373,7 +373,7 @@ input
 }
 .filelabel i,
 .filelabel .title {
-color: grey;
+/* color: grey; */
 transition: 200ms color;
 }
 /* .filelabel:hover {
@@ -411,4 +411,13 @@ color: #1665c4;
   align-items: center;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+@media (max-width: 402px) {
+  .post-img
+  {
+    height: 250px;
+    
+  }
+  
 }

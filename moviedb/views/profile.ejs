@@ -100,13 +100,15 @@
                               <input class="FileUpload1" id="CoverInput" name="cover_image" type="file"/>
                       
                           </label>
-                          <% if(cuser.profile_image && cuser.cover_image.url) {%>              
+                          <!-- <% if(cuser.cover_image && cuser.cover_image.url) {%>               -->
                             <i  onclick="deleteCoverImage(this)" class='bx bxs-message-alt-x cover-delete-icon' filename="<%=cuser.cover_image.filename%>" id="<%=cuser._id%>"></i>
-                            <%}%>
+                            <!-- <%}%> -->
                                 
+                            
                                 <% if(cuser.profile_image && cuser.profile_image.url) {%>
                                   <img  id="prof-preview" src="<%=cuser.profile_image.url%>"  alt="" class="img-thumbnail">
                                   <%}else{%>
+
 
                                 <img  id="prof-preview" src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXh6vH////5+vrl7fPv8/f0+fzt9Pbf6vD+/f/j6/Lf6vL///3f6fLr8fbv8/by9vm0HxD7AAACbUlEQVR4nO3c65abIBRAYVHTDALx/d+2VBuDII6zLHro2t/fmEn2HETn2jQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkG29irNHa4I9G9+qu83B2BTauu01JIIYUUUkghhbcX/ipFTGH3LKOTUmi6Qq/QGQrLovA8Ckuj8LzqC/98A2ZX5YXd2Lajf6beOaTmwm5+tnnsBNZc+NTt/OaNanWT/U5hzYWjWjzyh1VSqK1ONpTPW/fyz66kcHCqixJtHwSqPvvUKgq1D/Rjik61MZzhWPd5aJ3fTfwR6yn+P4XzBFU8RevCwvzPJCoo9IFmepdmPUUdFuqaZzgt0fcUw8T+88Ar/wrSC/UywemgcKE+7Tg/ZNRY8V2bDScYT9G6r+mdu+fOK8guXE8wmaK/Vet6980PPmUXDvEEVXLRCL942lwGkguny0RSmF76//ILuh/SE1JyYXIObk/xzfn17NJH5BZ+LvSHpmjno10yRbmFySYTDHFjivONnZ9iHC+3MLNE31NcJy7zNsn9m9DC9DIRTXG9UD977jTF1UIVWpjbZDJTDM/YeLsRWfjdBKMprj8d8RRFFm5d6Dca31OM99z1diOwMHehT01TTBe0WV00BBYem+AyRbdxcDhFgYX6YN80RZu5LTCSZ9gcLzSqz+xIZvloAgt/MsN8u+QZUkghhRRSSCGFFFJIIYWXFKqv85Towr3fcDpKSy78xygsjcLzKCyNwvPEFCpthxKsVlIKXVeGE1NYHoUUUkghhRRSeFfh2D6u0o53BOpmuOz/RA17f8MHAAAAAAAAAAAAAAAAAAAAAAAAAAAAALjcb3yLQG5tF3tgAAAAAElFTkSuQmCC'  alt="" class="img-thumbnail">
                                 <%}%>
@@ -117,6 +119,9 @@
                                 <input class="FileUpload1" id="ProfileInput" name="profile_image" type="file"/>
                         
                             </label>
+                            <% if(cuser.profile_image && cuser.profile_image.url) {%>              
+                              <i  onclick="deleteProfileImage(this)" class='bx bxs-message-alt-x profile-delete-icon ' filename="<%=cuser.cover_image.filename%>" id="<%=cuser._id%>"></i>
+                              <%}%>
                               </div>
                               <div class="other-info">
                               <div class="mb-3 form-ele">
@@ -218,7 +223,7 @@
             
                   <div class="alltags">
                     <span style="font-weight:bold;">Tags</span>
-                    <div style="margin-left:30px; display: inline-block;">
+                    <div style=" display: inline-block;">
                     <%if(posts[i].tags){%>
                       <% for(let j=0;j<posts[i].tags.length;j++) {%>
                         <span class="tag" ><a class="tag-a" href="/post/<%=posts[i].tags[j]%>"><%=posts[i].tags[j] %> </a></span>
@@ -308,7 +313,7 @@
             
                   <div class="alltags">
                     <span style="font-weight:bold;">Tags</span>
-                    <div style="margin-left:30px; display: inline-block;">
+                    <div style=" display: inline-block;">
                     <%if(vposts[i].tags){%>
                       <% for(let j=0;j<vposts[i].tags.length;j++) {%>
                         <span class="tag" ><a class="tag-a" href="/post/<%=vposts[i].tags[j]%>"><%=vposts[i].tags[j] %> </a></span>

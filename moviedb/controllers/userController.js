@@ -146,3 +146,20 @@ await cloudinary.uploader.destroy(filename);
 res.send("Success");
 
 })
+
+
+module.exports.deleteprofileImage=catchAsync(async(req,res)=>
+{
+  
+const {id}=req.params; 
+console.log("Inside route",id);
+
+const getUser=await User.findById(id);
+console.log("Getuser",getUser);
+await User.findByIdAndUpdate(id,{profile_image:{}})
+const filename=getUser.profile_image.filename;
+await cloudinary.uploader.destroy(filename);
+res.send("Success");
+
+})
+
