@@ -1,10 +1,8 @@
+
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content create-modal">
-        <!-- <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Post your views</h5>
      
-        </div> -->
         <div class="modal-body ">
           
         <div class="d-flex justify-content-end ">
@@ -13,7 +11,7 @@
         </div>
           <form  action="/user/post" class="needs-validation" method="post" novalidate enctype="multipart/form-data">
             <div class="mb-3">
-              <!-- <label for="title" class="form-label">Title</label> -->
+              
               
               <input type="text" name="title" id="title" aria-describedby="emailHelp" required
               placeholder="What's happening?">
@@ -23,14 +21,12 @@
              
             </div>
             <div class="mb-3">
-              <!-- <label for="image" class="form-label ">Image</label>
-              <input type="text" name="image" class="form-control" id="image"> -->
-              <!-- <input type="file" name="image" id="image-upload"> -->
+             
             </div>
             <img src="" alt="" id="preview" style="width: 100%;">
     
             <div class="mb-3">
-              <!-- <label for="text" class="form-label">Text</label> -->
+             
               <textarea name="text" placeholder="Would you like describe more?" id="text" data-enable-grammarly="false" required></textarea>
               <div class="valid-feedback">
                 
@@ -39,7 +35,7 @@
 
             <span class="add" onclick="clicked(this)">Add tags <box-icon type='solid' class="boxicon" name='folder-plus'></box-icon></box-icon></span>
             <box-icon  onclick="deletetag(this)" type='solid' class="boxicon" name='folder-minus'></box-icon>
-            <!-- <button type= class="btn btn-primary add" onclick="this.disabled = true">Add</button> -->
+           
             <div class="tags">
 
             </div>

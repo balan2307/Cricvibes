@@ -55,17 +55,41 @@ const {id}=req.params;
 const currentUser=req.session.user._id;
 let vposts=[];
 // console.log("Profile requested",id)
-const posts=await Post.find({user:currentUser}).populate('user');
-const uposts=await Post.find({upvotes:{$in:[currentUser]}}).populate('user')
-const dposts=await Post.find({downvotes:{$in:[currentUser]}}).populate('user')
+let posts=[];
+let uposts=[];
+let dposts=[];
+
+if(id==currentUser)
+{
+console.log("If user");
+posts=await Post.find({user:currentUser}).populate('user');
+uposts=await Post.find({upvotes:{$in:[currentUser]}}).populate('user')
+dposts=await Post.find({downvotes:{$in:[currentUser]}}).populate('user')
+}
+else
+{
+
+console.log("else user");
+posts=await Post.find({user:id}).populate('user');
+uposts=await Post.find({upvotes:{$in:[id]}}).populate('user')
+dposts=await Post.find({downvotes:{$in:[id]}}).populate('user')
+}
+
+
 
 vposts=[...uposts,...dposts]
 vposts.concat(uposts)
 
 const cuser=await User.findById(id);
 
+const uid=req.session.user._id;
+const current_user=await User.findById(uid);
+let user_following=[];
+console.log("User now",current_user);
+user_following=current_user.following;
 
-res.render('profile',{posts,vposts,cuser});
+console.log("Updated",user_following)
+res.render('profile',{posts,vposts,cuser,user_following});
 })
 
 
@@ -90,6 +114,12 @@ module.exports.updateProfile=catchAsync(async(req,res)=>
     }
     else
     {
+ 
+        if(getUser.profile_image && getUser.profile_image.filename) 
+        {
+     await cloudinary.uploader.destroy(getUser.profile_image.filename);
+        }
+      
      pimage={url:profile_image[0].path,filename:profile_image[0].filename}
     }
 
@@ -99,27 +129,16 @@ module.exports.updateProfile=catchAsync(async(req,res)=>
     }
     else
     {
+        if(getUser.cover_image && getUser.cover_image.filename) 
+        {
+        await cloudinary.uploader.destroy(getUser.cover_image.filename);
+        }
      cimage={url:cover_image[0].path,filename:cover_image[0].filename}
     }
 
 
 
     console.log("Images",pimage,cimage);
-
-    // if(!req.files)
-    // { 
-    
-    //   image=getUser.image;
-    // }
-    // else
-    // {
-    //   const {path,filename}=req.file;
-    //   image={url:path,filename:filename};
-    // }
-    
-   
-
-      
 
 
     const saved=await User.findByIdAndUpdate(id,{username,bio,profile_image:pimage,cover_image:cimage},{new: true});
@@ -163,3 +182,40 @@ res.send("Success");
 
 })
 
+
+//follow
+
+
+
+
+
+module.exports.addFollower=catchAsync(async(req,res)=>
+{
+
+const {user_id}=req.params; 
+  
+console.log("Follow",user_id);
+const id=req.session.user._id;
+const user=await User.findByIdAndUpdate(user_id,{$addToSet:{followers:id}});
+const current_user=await User.findByIdAndUpdate(id,{$addToSet:{following:user_id}},{new:true});
+console.log("followed",current_user)
+req.session.user=current_user;
+console.log("set session f",req.session.user)
+
+})
+
+
+
+module.exports.removeFollower=catchAsync(async(req,res)=>
+{
+  
+const {user_id}=req.params; 
+console.log("UnFollow",user_id);
+const id=req.session.user._id
+const user=await User.findByIdAndUpdate(user_id,{$pull:{followers:id}});
+const current_user=await User.findByIdAndUpdate(id,{$pull:{following:user_id}},{new:true});
+console.log("Unfollowed",current_user)
+req.session.user=current_user;
+console.log("set session rf",req.session.user)
+
+})

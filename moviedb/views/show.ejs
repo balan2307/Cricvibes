@@ -66,7 +66,7 @@
         
           <div class="card post" id="<%=posts[i].id%>" >
             <div class="user-det">
-             Posted by - <%=posts[i].user.username%>
+             Posted by - <a href="/user/profile/<%=posts[i].user._id%>"><%=posts[i].user.username%></a>
             </div>
   <img src="<%=posts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
   <div class="card-body post-body" >
@@ -77,45 +77,9 @@
 
    
    <%- include('partials/editModal') %>
-      <%- include('partials/createModal') %>
-    <!-- <div class="modal fade" id="title<%=posts[i].id%>" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit your post</h5>
-           
-          </div>
-          <div class="modal-body">
-            <form  action="/user/post/<%=posts[i].id%>?_method=PUT" class="needs-validation" novalidate method="post" enctype="multipart/form-data" >
-              <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                
-                <input type="text" value="<%=posts[i].title%>"  required name="title" class="form-control" id="title" aria-describedby="emailHelp">
-               
-              </div>
-              <div class="mb-3">
-                <label for="image" class="form-label ">Image</label>
-                <input type="file" name="image" value="<%=posts[i].image.url%>">
-              </div>
-      
-              <div class="mb-3">
-                <label for="text" class="form-label">Text</label>
-                <textarea class="form-control"  name="text" required  placeholder="Leave a comment here" id="text"><%=posts[i].text%></textarea>
-              </div>
-             
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-            </form>
-       
-          </div>
-      
-       
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            
-          </div>
-        </div>
-      </div>
-      </div> -->
+ 
+     
+  
 
       <div class="alltags">
         <span style="font-weight:bold;">Tags</span>
@@ -187,9 +151,10 @@
 
 
       <div class="d-none d-lg-inline-block col-lg-3 col-more" >
-        <!-- Modal -->
+       
+       
      
-
+        <%- include('partials/createModal') %>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
           Post something
           </button>

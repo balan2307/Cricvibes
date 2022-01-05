@@ -31,6 +31,12 @@ router.route('/profile/:id')
 }]) ,userController.updateProfile)
 
 
+router.route('/follow/:user_id')
+.post(userController.addFollower);
+
+router.route('/unfollow/:user_id')
+.post(userController.removeFollower);
+
 router.route('/:id/profile/coverimage')
 .post(userController.deleteImage);
 

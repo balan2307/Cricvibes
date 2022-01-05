@@ -80,3 +80,39 @@ function deleteProfileImage(e){
    axios.post(`/user/${id}/profile/profileimage`).then((res)=>console.log("response",res));
 }
  
+let res;
+function followToggle(e)
+{
+
+ 
+   res=e;
+   let user_id=document.getElementById("user_id").getAttribute("profile");
+   const follow=document.getElementById('followers')
+   let count=parseInt(follow.innerText);
+   console.log("Count",count)
+   
+
+   
+   if(res.innerText=="Follow") 
+   {
+
+      console.log("Fol")
+      count+=1;
+      follow.innerText=count;
+      res.innerText="Unfollow"
+      console.log("Follow",user_id);
+      axios.post(`/user/follow/${user_id}`).then((res)=>console.log("response",res));
+}
+   else if(res.innerText=="Unfollow") 
+   {
+      count-=1;
+      follow.innerText=count;
+      console.log("unFol")
+      res.innerText="Follow";
+      axios.post(`/user/unfollow/${user_id}`).then((res)=>console.log("response",res));
+
+   }
+}
+
+const followBtn=document.getElementById('follow-btn');
+

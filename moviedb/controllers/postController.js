@@ -107,7 +107,6 @@ const foundPost=await Post.findByTag(tag).populate('user').limit(limit).skip(ski
 let total=await Post.findByTag(tag).count();
 
 
-console.log("total",total)
 
 
   res.render('tagpost',{posts:foundPost,total,tag});

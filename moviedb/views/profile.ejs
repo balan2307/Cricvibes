@@ -39,22 +39,28 @@
 
         <div class="row" >
             
-            <div class="p-0 col-md-12 col-12 profile-detail"  >
+            <div class=" col-md-12 col-12 profile-detail"  >
+              <span  id="user_id" profile="<%=cuser._id%>" style="display: none;"></span>
 
               <div class="row">
-                <div class="col-12 user-info">
-                  <div style="  margin-bottom: 25px;">
+                <div class="p-0 col-12 user-info">
+                  <div  style="  margin-bottom: 25px;">
                    
                     <% if(cuser.cover_image && cuser.cover_image.url) {%>
-                    <div class="img mb-5 prof-image d-flex justify-content-start"  style="background-image: url(<%=cuser.cover_image.url%>); ">
+                    <div class="img  mb-5 prof-image d-flex justify-content-start"  style="background-image: url(<%=cuser.cover_image.url%>); ">
                      <%}else{%>
-                      <div class="img mb-0 prof-image d-flex justify-content-start"  style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXh6vH////5+vrl7fPv8/f0+fzt9Pbf6vD+/f/j6/Lf6vL///3f6fLr8fbv8/by9vm0HxD7AAACbUlEQVR4nO3c65abIBRAYVHTDALx/d+2VBuDII6zLHro2t/fmEn2HETn2jQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkG29irNHa4I9G9+qu83B2BTauu01JIIYUUUkghhbcX/ipFTGH3LKOTUmi6Qq/QGQrLovA8Ckuj8LzqC/98A2ZX5YXd2Lajf6beOaTmwm5+tnnsBNZc+NTt/OaNanWT/U5hzYWjWjzyh1VSqK1ONpTPW/fyz66kcHCqixJtHwSqPvvUKgq1D/Rjik61MZzhWPd5aJ3fTfwR6yn+P4XzBFU8RevCwvzPJCoo9IFmepdmPUUdFuqaZzgt0fcUw8T+88Ar/wrSC/UywemgcKE+7Tg/ZNRY8V2bDScYT9G6r+mdu+fOK8guXE8wmaK/Vet6980PPmUXDvEEVXLRCL942lwGkguny0RSmF76//ILuh/SE1JyYXIObk/xzfn17NJH5BZ+LvSHpmjno10yRbmFySYTDHFjivONnZ9iHC+3MLNE31NcJy7zNsn9m9DC9DIRTXG9UD977jTF1UIVWpjbZDJTDM/YeLsRWfjdBKMprj8d8RRFFm5d6Dca31OM99z1diOwMHehT01TTBe0WV00BBYem+AyRbdxcDhFgYX6YN80RZu5LTCSZ9gcLzSqz+xIZvloAgt/MsN8u+QZUkghhRRSSCGFFFJIIYWXFKqv85Towr3fcDpKSy78xygsjcLzKCyNwvPEFCpthxKsVlIKXVeGE1NYHoUUUkghhRRSeFfh2D6u0o53BOpmuOz/RA17f8MHAAAAAAAAAAAAAAAAAAAAAAAAAAAAALjcb3yLQG5tF3tgAAAAAElFTkSuQmCC');
+                      <div class="img mb-5 prof-image d-flex justify-content-start"  style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXh6vH////5+vrl7fPv8/f0+fzt9Pbf6vD+/f/j6/Lf6vL///3f6fLr8fbv8/by9vm0HxD7AAACbUlEQVR4nO3c65abIBRAYVHTDALx/d+2VBuDII6zLHro2t/fmEn2HETn2jQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkG29irNHa4I9G9+qu83B2BTauu01JIIYUUUkghhbcX/ipFTGH3LKOTUmi6Qq/QGQrLovA8Ckuj8LzqC/98A2ZX5YXd2Lajf6beOaTmwm5+tnnsBNZc+NTt/OaNanWT/U5hzYWjWjzyh1VSqK1ONpTPW/fyz66kcHCqixJtHwSqPvvUKgq1D/Rjik61MZzhWPd5aJ3fTfwR6yn+P4XzBFU8RevCwvzPJCoo9IFmepdmPUUdFuqaZzgt0fcUw8T+88Ar/wrSC/UywemgcKE+7Tg/ZNRY8V2bDScYT9G6r+mdu+fOK8guXE8wmaK/Vet6980PPmUXDvEEVXLRCL942lwGkguny0RSmF76//ILuh/SE1JyYXIObk/xzfn17NJH5BZ+LvSHpmjno10yRbmFySYTDHFjivONnZ9iHC+3MLNE31NcJy7zNsn9m9DC9DIRTXG9UD977jTF1UIVWpjbZDJTDM/YeLsRWfjdBKMprj8d8RRFFm5d6Dca31OM99z1diOwMHehT01TTBe0WV00BBYem+AyRbdxcDhFgYX6YN80RZu5LTCSZ9gcLzSqz+xIZvloAgt/MsN8u+QZUkghhRRSSCGFFFJIIYWXFKqv85Towr3fcDpKSy78xygsjcLzKCyNwvPEFCpthxKsVlIKXVeGE1NYHoUUUkghhRRSeFfh2D6u0o53BOpmuOz/RA17f8MHAAAAAAAAAAAAAAAAAAAAAAAAAAAAALjcb3yLQG5tF3tgAAAAAElFTkSuQmCC');
                       background-position: center;
                       ">
 
                       <%}%>
+                     
                       
-                             
+                     
+                      
+                      <div class="d-flex justify-content-between">
+                        <div>
+                         
                       <% if(cuser.profile_image && cuser.profile_image.url) {%>
                         <img style="border: 4px solid #fff8f8; margin-left: 20px;" name="profile-image" id="profile" src="<%=cuser.profile_image.url%>"  alt="" class="user-profile">
                         
@@ -62,15 +68,43 @@
 
                       <img style="border: 4px solid #fff8f8; margin-left: 20px;" name="profile-image" id="profile" src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXh6vH////5+vrl7fPv8/f0+fzt9Pbf6vD+/f/j6/Lf6vL///3f6fLr8fbv8/by9vm0HxD7AAACbUlEQVR4nO3c65abIBRAYVHTDALx/d+2VBuDII6zLHro2t/fmEn2HETn2jQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkG29irNHa4I9G9+qu83B2BTauu01JIIYUUUkghhbcX/ipFTGH3LKOTUmi6Qq/QGQrLovA8Ckuj8LzqC/98A2ZX5YXd2Lajf6beOaTmwm5+tnnsBNZc+NTt/OaNanWT/U5hzYWjWjzyh1VSqK1ONpTPW/fyz66kcHCqixJtHwSqPvvUKgq1D/Rjik61MZzhWPd5aJ3fTfwR6yn+P4XzBFU8RevCwvzPJCoo9IFmepdmPUUdFuqaZzgt0fcUw8T+88Ar/wrSC/UywemgcKE+7Tg/ZNRY8V2bDScYT9G6r+mdu+fOK8guXE8wmaK/Vet6980PPmUXDvEEVXLRCL942lwGkguny0RSmF76//ILuh/SE1JyYXIObk/xzfn17NJH5BZ+LvSHpmjno10yRbmFySYTDHFjivONnZ9iHC+3MLNE31NcJy7zNsn9m9DC9DIRTXG9UD977jTF1UIVWpjbZDJTDM/YeLsRWfjdBKMprj8d8RRFFm5d6Dca31OM99z1diOwMHehT01TTBe0WV00BBYem+AyRbdxcDhFgYX6YN80RZu5LTCSZ9gcLzSqz+xIZvloAgt/MsN8u+QZUkghhRRSSCGFFFJIIYWXFKqv85Towr3fcDpKSy78xygsjcLzKCyNwvPEFCpthxKsVlIKXVeGE1NYHoUUUkghhRRSeFfh2D6u0o53BOpmuOz/RA17f8MHAAAAAAAAAAAAAAAAAAAAAAAAAAAAALjcb3yLQG5tF3tgAAAAAElFTkSuQmCC'  alt="" class="img-thumbnail">
                       <%}%>
+                      
+
+
+
+                      
+                        </div>
+                      
+   
+                        </div>
+
+                      
                     </div>
-                    <div class="" style="margin-top: 80px ;margin-left: 20px">
-                    <p> <span><%=cuser.username%></span></p>
+
+                    <div>
+                      <%  if(cuser._id!=user._id) {%>
+                      <div class="d-flex justify-content-end">
+                        <button onclick="followToggle(this)" class="btn  btn-follow" style="margin-right:25px;width: 90px;">
+                          <% console.log("User follow",user_following,cuser.id) %>
+                         <%=  user_following && user_following.includes(cuser._id) ? 'Unfollow' : 'Follow' %>
+                        </button>
+                      </div>
+                      <% } %>
+
+                    <div class="" style="margin-top: 70px ;margin-left: 20px">
+                    <p> <span ><%=cuser.username%></span></p>
                     <p><span><%= cuser.bio ? cuser.bio : '' %></span></p>
-                    <p><span style="margin-right:0.5rem">200</span> <span style="margin-right:2rem">following</span>  <span style="margin-right:0.5rem">102</span>followers</p>
+                    <p><span style="margin-right:0.5rem;font-weight: bold;" ><%=cuser.following.length%></span> <span style="margin-right:2rem">following</span>  <span style="margin-right:0.5rem;    font-weight: bold;" id="followers"><%=cuser.followers.length%></span>followers</p>
+
+                    
+                    <%  if(cuser._id==user._id) {%>
                     <div >
                       <a href="" data-bs-toggle="modal" data-bs-target="#profileEdit" >Edit</a>
                       </div>
+                      <% }%>
 
+                      
+                    </div>
                     </div>
                     </div>
 
@@ -93,18 +127,21 @@
                                   background-position: center;">
                                   <%}%>
 
-                               
+                                <div class="d-flex justify-content-center">
                                 <label class="filelabel" >
                
-                                  <i class='bx bx bx-image-alt cover-upload-icon'></i>
+                                  <i style="margin-top: 55px;" class='bx bx bx-image-alt cover-upload-icon'></i>
                          
                                  
                           
                               <input class="FileUpload1" id="CoverInput" name="cover_image" type="file"/>
                       
                           </label>
+                          </div>
                           <!-- <% if(cuser.cover_image && cuser.cover_image.url) {%>               -->
+                            <div class="d-flex justify-content-end">
                             <i  onclick="deleteCoverImage(this)" class='bx bxs-message-alt-x cover-delete-icon' filename="<%=cuser.cover_image.filename%>" id="<%=cuser._id%>"></i>
+                            </div>
                             <!-- <%}%> -->
                                 
                             
@@ -208,7 +245,7 @@
                     
                       <div class="card post" id="<%=posts[i].id%>" >
                         <div class="user-det">
-                        <%  console.log("Usser post",posts[i].user) %>
+                    
                          Posted by - <%=posts[i].user.username%>
                         </div>
               <img src="<%=posts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
