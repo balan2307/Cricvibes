@@ -330,3 +330,40 @@ else if(extension == 'doc' || extension == 'docx'){
       $(".filelabel .title").text(labelVal);
   }
 });
+
+
+
+
+
+
+function sharebtn(e,id)
+{
+
+  const sstatus=e.nextElementSibling;
+  let clists;
+  clists=e.classList;
+  if(clists.contains('bx-share'))
+  {
+ 
+e.classList.add('bxs-share');
+e.classList.remove('bx-share');
+ sstatus.innerText="Shared";
+
+ axios.post(`/user/shared/${id}`).then((res)=>console.log("response",res));
+ console.log("Shared js");
+  }
+  else if(clists.contains('bxs-share'))
+  {
+ 
+e.classList.add('bx-share');
+e.classList.remove('bxs-share');
+   sstatus.innerText="Share";
+   axios.post(`/user/unshared/${id}`).then((res)=>console.log("response",res));
+   console.log("unShared js");
+
+
+  }
+
+  
+
+}

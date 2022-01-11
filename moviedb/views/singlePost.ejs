@@ -33,7 +33,7 @@
        </div>
      
 
-      <div class="row">
+      <div class="row" >
     
       
           
@@ -76,6 +76,12 @@
 
       <div class="alltags">
         <span style="font-weight:bold;">Tags</span>
+        <div style="display: inline; padding: 10px;font-size: 0.9rem;" >  <i onclick="sharebtn(this,'<%=post._id%>')" class='bx   share-btn bx-sm bx-rotate-180  <%= cuser.shared.includes(post.id) ? 'bxs-share': 'bx-share' %>  '></i><span id="share_status" style="margin-left: 5px;">
+          <%= cuser.shared.includes(post.id) ? 'Shared': 'Share' %> 
+        </span> 
+        <span class="share_post" id="<%=post._id%>" style="display:none;" ></span></div>
+        
+
         <div style="margin-left:30px; display: inline-block;">
         <%if(post.tags){%>
           <% for(let j=0;j<post.tags.length;j++) {%>

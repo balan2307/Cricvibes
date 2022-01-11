@@ -31,16 +31,119 @@
       </div>
  
       <div class="col-lg-6 col-12 col-sm-8 col-content" >
-        
+       
        <div class="home-head">
         <p>Home</p>
       
 
        </div>
+
+       <div class="row">
+        <% console.log("sposts",sposts.length," posts",posts.length) %>
+        <% if(sposts.length==0 && posts.length==0){ %>
+          <div style="  font-size: 1.2rem;
+          font-weight: bold;width:100vh " class="d-flex justify-content-center">
+          <p>No posts to show ,start following your friends</p>
+        </div>
+
+          <%}%>
+      
+        <% for(let i=0;i<sposts.length;i++) {%>
+          
+        <div class="col-lg-12   mb-5">
+          <div class="row  content" style="margin:10px">
+          <div class="col-2 col-lg-1 vote">
+            <div class="wrapper" id="<%=sposts[i]._id%>">
+              
+           
+              <div><i class='bx bx-upvote bx-sm upvote <%=sposts[i].upvotes.includes(user._id) ? 'bxs-upvote' : ''%> ' ></i></div>
+              <div id="vote-count"style="text-align: center; font-weight: bold; font-size: 1.2rem;">
+              <%= (sposts[i].upvotes.length-sposts[i].downvotes.length)%></div>
+              <div ><i class='bx  bx-downvote bx-sm downvote  <%= sposts[i].downvotes.includes(user._id) ? 'bxs-downvote' : ''%> ' ></i></div>
+             
+             
+            </div>
+        
+  
+          </div>
+
+          <div class="col-10 col-lg-11 " style="padding:0">
+
+
+         
+        
+          <div class="card post" id="<%=sposts[i].id%>" >
+            <div class="user-det">
+              <div>
+                Shared by - <a href="/user/profile/<%=sposts[i].sharedid%>"><%=sposts[i].shareduser%></a>
+              </div>
+              <div>
+                Posted by - <a href="/user/profile/<%=sposts[i].user._id%>"><%=sposts[i].user.username%></a>
+
+              </div>
+            
+            </div>
+  <img src="<%=sposts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
+  <div class="card-body post-body" >
+
+    <h5 class="card-title"><%=sposts[i].title%></h5>
+
+    <p class="card-text"><%=sposts[i].text%></p>
+
+   
+
+ 
+     
+  
+
+      <div class="alltags">
+        <span style="font-weight:bold;">Tags</span>
+        <div style=" display: inline-block;">
+        <%if(sposts[i].tags){%>
+          <% for(let j=0;j<sposts[i].tags.length;j++) {%>
+            <span class="tag" ><a class="tag-a" href="/post/<%=sposts[i].tags[j]%>"><%=sposts[i].tags[j] %> </a></span>
+         
+            <%}%>
+          
+        <%}%>
+        </div>
+
+        
+      </div>
      
 
+    
+    <form style="display: inline-block;" action="/user/post/<%=sposts[i].id%>" method="GET"  >
+      <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
+    </form>
+    <div style="display: inline; padding: 10px;font-size: 0.9rem;" >  <i onclick="sharebtn(this,'<%=sposts[i]._id%>')" class='bx   share-btn bx-sm bx-rotate-180  <%= current_user.shared.includes(sposts[i].id) ? 'bxs-share': 'bx-share' %>  '></i><span id="share_status" style="margin-left: 5px;">
+      <%= current_user.shared.includes(sposts[i].id) ? 'Shared': 'Share' %> 
+    </span> 
+    <span class="share_post" id="<%=sposts[i]._id%>" style="display:none;" ></span></div>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+<%}%>
+      
+       
+
+      </div>
+     
+
+
+
+
+
+
+
+
       <div class="row">
-        <% console.log("Post length",posts.length,posts) %>
+
+     
+      
         <% for(let i=0;i<posts.length;i++) {%>
           
         <div class="col-lg-12   mb-5">
@@ -54,6 +157,7 @@
               <%= (posts[i].upvotes.length-posts[i].downvotes.length)%></div>
               <div ><i class='bx  bx-downvote bx-sm downvote  <%= posts[i].downvotes.includes(user._id) ? 'bxs-downvote' : ''%> ' ></i></div>
              
+             
             </div>
         
   
@@ -66,7 +170,9 @@
         
           <div class="card post" id="<%=posts[i].id%>" >
             <div class="user-det">
+              <div>
              Posted by - <a href="/user/profile/<%=posts[i].user._id%>"><%=posts[i].user.username%></a>
+             </div>
             </div>
   <img src="<%=posts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
   <div class="card-body post-body" >
@@ -76,7 +182,7 @@
     <p class="card-text"><%=posts[i].text%></p>
 
    
-   <%- include('partials/editModal') %>
+
  
      
   
@@ -97,7 +203,7 @@
       </div>
      
 
-
+      <%- include('partials/editModal') %>
      <% if(posts[i].user._id==user._id) {%>
       <a href="#" class="btn btn-sm btn-edit" onclick="showEditModal('<%=posts[i]._id%>')" style="text-decoration:none; " data-bs-toggle="modal" data-bs-target="#exampleModal2" >Edit</a>
 
@@ -114,6 +220,9 @@
     <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>" method="GET"  >
       <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
     </form>
+    <div style="display: inline; padding: 10px;font-size: 0.9rem;" > <i onclick="sharebtn(this,'<%=posts[i]._id%>')" class='bx   share-btn bx-sm bx-rotate-180  <%= current_user.shared.includes(posts[i].id) ? 'bxs-share': 'bx-share' %>  '></i><span id="share_status" style="margin-left: 5px;">
+                                                                                                                                            <%= current_user.shared.includes(posts[i].id) ? 'Shared': 'Share' %>  </span> 
+    <span class="share_post" id="<%=posts[i]._id%>" style="display:none;" ></span></div>
   </div>
 
 </div>
@@ -125,7 +234,7 @@
        
 
       </div>
-
+     <% if(posts.length>1){ %>
       <div>
         <nav aria-label="...">
           <ul class="pagination pagination-md">
@@ -141,6 +250,7 @@
           </ul>
         </nav>
       </div>
+      <%}%>
 
       </div>
 

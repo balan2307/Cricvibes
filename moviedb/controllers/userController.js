@@ -219,3 +219,32 @@ req.session.user=current_user;
 console.log("set session rf",req.session.user)
 
 })
+
+
+module.exports.sharePost=catchAsync(async(req,res)=>
+{
+  
+const {id}=req.params;
+console.log("Shared",id);
+const user_id=req.session.user._id;
+
+await Post.findByIdAndUpdate(id,{$addToSet:{sharedBy:user_id}})
+await User.findByIdAndUpdate(user_id,{$addToSet:{shared:id}})
+res.send("Success");
+
+
+})
+
+module.exports.unsharePost=catchAsync(async(req,res)=>
+{
+  
+const {id}=req.params;
+console.log("unShared",id)
+let user_id=req.session.user._id;
+
+await Post.findByIdAndUpdate(id,{$pull:{sharedBy:user_id}})
+await User.findByIdAndUpdate(user_id,{$pull:{shared:id}})
+res.send("Success");
+
+
+})

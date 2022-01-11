@@ -34,6 +34,10 @@ const userSchema=new mongoose.Schema({
     following:[{
         type:Schema.Types.ObjectId,
         ref:'User'
+    }],
+    shared:[{
+        type:Schema.Types.ObjectId,
+        ref:'Post'
     }]
     
 })

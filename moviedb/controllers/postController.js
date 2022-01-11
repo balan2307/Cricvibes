@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const Post=require('../models/post');
+const User=require('../models/user');
 const catchAsync=require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const expressError=require('../utils/ExpressError');
@@ -65,10 +66,28 @@ res.redirect('/user/post');
 module.exports.getPost=catchAsync(async(req,res)=>
 {
 
+let feeds=[];
+let sposts=[];
+let user_name;
+// feeds=req.session.user.following;
+// let user=req.session.user._id;
+let id=req.session.user._id;
+let current_user=await User.findById(id);
+let user=await User.findById(id);
+// let sharedposts=await User.findById(id);
+feeds=user.following;
+
+console.log("Before");
+// sposts=await Post.findSharedposts(feeds);
+// console.log("Spostss",sposts);
+// console.log("After");
+
+
+
 
 let {page}=req.query;
 let total=await Post.collection.countDocuments();
-console.log("total",total,page);
+
 if(!page)
 {
   page=1;
@@ -76,13 +95,18 @@ if(!page)
 let size=2;
 let limit=parseInt(size);
 let skip=(page-1)*size;
+let posts=await Post.find({user:{$in:feeds}}).populate('user').limit(limit).skip(skip);;
+Post.findSharedposts(feeds)
+.then((data)=>
+{
 
-const posts=await Post.find().populate('user').limit(limit).skip(skip);
-
-
-res.render('show',{posts,total});
-
+console.log("DATA",data)
+sposts=data;
+res.render('show',{posts,sposts,current_user,total});
 })
+});
+
+
 
 
 module.exports.getTaggedPost=catchAsync(async(req,res)=>
@@ -90,6 +114,8 @@ module.exports.getTaggedPost=catchAsync(async(req,res)=>
 
  const {tag}=req.params;
   console.log("Inside tagged psost",tag)
+const id=req.session.user._id;
+const cuser=await User.findById(id);
   
 
 let {page}=req.query;
@@ -109,7 +135,7 @@ let total=await Post.findByTag(tag).count();
 
 
 
-  res.render('tagpost',{posts:foundPost,total,tag});
+  res.render('tagpost',{posts:foundPost,total,cuser,tag});
 
 
 })
@@ -118,7 +144,7 @@ let total=await Post.findByTag(tag).count();
 module.exports.editPost=catchAsync(async(req,res,next)=>
 {
  
-  
+console.log("Edit");
 const {title,image,text,tag0,tag1,tag2}=req.body;
 let tags=[];
 
@@ -165,7 +191,8 @@ if(foundUser)
 module.exports.viewPost=catchAsync(async(req,res,next)=>
 {
  
-
+const uid=req.session.user._id;
+const cuser=await User.findById(uid);
 const {id}=req.params;
 
 
@@ -182,7 +209,7 @@ console.log("Inside viewPost",foundPost)
 if(foundPost)
 {
   // console.log("Updated",foundUser);
-  res.render('singlePost',{post:foundPost});
+  res.render('singlePost',{post:foundPost,cuser});
 }
 })
 

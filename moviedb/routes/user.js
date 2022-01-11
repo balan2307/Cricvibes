@@ -44,5 +44,10 @@ router.route('/:id/profile/profileimage')
 .post(userController.deleteprofileImage);
 
 
+router.route('/shared/:id')
+.post(userController.sharePost);
+
+router.route('/unshared/:id')
+.post(userController.unsharePost);
 
 module.exports=router;
