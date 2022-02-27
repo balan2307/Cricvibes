@@ -121,7 +121,7 @@ let total=allposts.length;
 
 // }
 let nposts=allposts.slice(skip,skip+2);
-console.log("s");
+
 // console.log("Sliced",nposts);
 // Post.findSharedposts(feeds)
 // .then((data)=>
@@ -166,7 +166,9 @@ let limit=parseInt(size);
 let skip=(page-1)*size;
 
 
-const foundPost=await Post.findByTag(tag).populate('user').limit(limit).skip(skip);
+let foundPost=await Post.findByTag(tag).populate('user').limit(limit).skip(skip);
+foundPost=foundPost.sort((a, b) => (a.time < b.time) ? 1 : -1)
+
 let total=await Post.findByTag(tag).count();
 
 
