@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
+    <!-- <link
     rel="stylesheet"
     href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
     crossorigin="anonymous"
-  />
+  /> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/blogposts.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -22,7 +22,21 @@
  
     <div class="row" style="height: 100vh;">
       <div class="col-lg-3  d-none d-sm-inline-block col-sm-4 col-prof justify-content-center" >
-        <h4>Hello, world!</h4>
+        <h2 class="web-name"><span><i class='bx bxs-cricket-ball'></i></span>
+          <a href="/user/post" style="color: #000000;"> Cricvibes </a></h2>
+        <div class="d-flex left-ui">
+          <div class="profile">
+            <a href="/user/profile/<%=user._id%>">
+            <p style="margin-top: 50px;"> <span class="profile_head">Profile<span></span> <span><i class='bx bx-md bxs-user'></i></span></p>
+          </a>
+          </div>
+          <div>
+            <%- include('partials/createModal') %>
+            <button type="button" class="btn btn-post" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+              Post something
+              </button>
+          </div>
+          </div>
       </div>
       <div class="col-lg-6 col-12 col-sm-8 col-content" >
         
@@ -58,8 +72,8 @@
          
         
           <div class="card post" id="<%=posts[i].id%>" >
-            <div class="user-det">
-              Posted by - <%=posts[i].user.username%>
+            <div class="user-det justify-content-start">
+             Posted by-<a href="/user/profile/<%=posts[i].user._id%>"><%=posts[i].user.username%></a>
             </div>
   <img src="<%=posts[i].image.url%>" class="card-img-top post-img" alt="...">
   <div class="card-body post-body" >
@@ -102,8 +116,8 @@
     <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>" method="GET"  >
       <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
     </form>
-    <div style="display: inline; padding: 10px;font-size: 0.9rem;" >  <i onclick="sharebtn(this,'<%=posts[i]._id%>')" class='bx   share-btn bx-sm bx-rotate-180  <%= cuser.shared.includes(posts[i].id) ? 'bxs-share': 'bx-share' %>  '></i><span id="share_status" style="margin-left: 5px;">
-      <%= cuser.shared.includes(posts[i].id) ? 'Shared': 'Share' %> 
+    <div style="display: inline; padding: 10px;font-size: 0.9rem;" >  <i onclick="sharebtn(this,'<%=posts[i]._id%>')" class='bx   share-btn bx-sm bx-rotate-180  <%=sposts && sposts.includes(posts[i].id) ? 'bxs-share': 'bx-share' %>  '></i><span id="share_status" style="margin-left: 5px;">
+      <%= sposts && sposts.includes(posts[i].id) ? 'Shared': 'Share' %> 
     </span> 
     <span class="share_post" id="<%=posts[i]._id%>" style="display:none;" ></span></div>
   </div>
@@ -146,9 +160,9 @@
         <!-- Modal -->
         <%- include('partials/createModal') %>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
           Post your thoughts
-          </button>
+          </button> -->
       </div>
     </div>
   </div>

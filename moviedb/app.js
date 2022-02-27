@@ -15,14 +15,24 @@ const Joi=require('joi');
 const {storage}=require('./cloudinary')
 const multer  = require('multer');
 const upload = multer({ storage })
+const flash = require("connect-flash");
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require("helmet");
+
 
 
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride('_method'));
+app.use(mongoSanitize());
+
+
+
+
 const mongoInit=require('./db/conn');
 const Movie=require('./models/movie')
 const InitRoutes=require('./routes/index');
@@ -31,24 +41,47 @@ const InitRoutes=require('./routes/index');
 
 dotenv.config();
 
+const store=new MongoStore({
+  mongoUrl:process.env.DATABASE,
+
+  secret:"topSecret",
+  touchAfter:24*60*60
+});
+
+store.on("error",function(e){
+  console.log("Error",e);
+})
+
 app.use(
+    
     session({
+      store,
+      name:'Session',
       secret: "topSecret",
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
+        // secure:true,
         maxAge: 2628000000,
       }
     })
   );
+app.use(flash());
+// app.use(helmet());
+// app.use(helmet({contentSecurityPolicy: false}));
+
+app.use(helmet({ contentSecurityPolicy: false}));
 
 const db=process.env.DATABASE;
 const port=process.env.PORT
 
 app.use((req, res, next) => {
 
+  console.log("Reques",req.query);
   res.locals.user = req.session.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   // console.log("Current user ",res.locals.user)
   next();
 });

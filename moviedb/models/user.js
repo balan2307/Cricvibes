@@ -6,6 +6,15 @@ const ImageSchema=new mongoose.Schema({
     url:String,
     filename:String
 })
+const shareSchema=new mongoose.Schema({
+    id:{
+        type:Schema.Types.ObjectId,
+        ref:'Post'
+    },
+    time:{
+        type:Number
+    }
+})
 
 const userSchema=new mongoose.Schema({
     username:{
@@ -35,10 +44,15 @@ const userSchema=new mongoose.Schema({
         type:Schema.Types.ObjectId,
         ref:'User'
     }],
+    // shared:shareSchema
     shared:[{
+        id:{
         type:Schema.Types.ObjectId,
         ref:'Post'
-    }]
+    },
+    time:{
+      type:Number
+       }}]
     
 })
 

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const isLoggedin=require('../middlewares/user_auth')
+
 const {storage}=require('../cloudinary')
 const multer  = require('multer');
 const upload = multer({ storage })
@@ -23,7 +25,7 @@ router.route('/home')
 
 
 router.route('/profile/:id')
-.get(userController.getProfile)
+.get(isLoggedin,userController.getProfile)
 .put(upload.fields([{
   name: 'profile_image', maxCount: 1
 }, {
@@ -32,22 +34,25 @@ router.route('/profile/:id')
 
 
 router.route('/follow/:user_id')
-.post(userController.addFollower);
+.post(isLoggedin,userController.addFollower);
 
 router.route('/unfollow/:user_id')
-.post(userController.removeFollower);
+.post(isLoggedin,userController.removeFollower);
 
 router.route('/:id/profile/coverimage')
-.post(userController.deleteImage);
+.post(isLoggedin,userController.deleteImage);
 
 router.route('/:id/profile/profileimage')
-.post(userController.deleteprofileImage);
+.post(isLoggedin,userController.deleteprofileImage);
 
 
 router.route('/shared/:id')
-.post(userController.sharePost);
+.post(isLoggedin,userController.sharePost);
+
+router.route('/search')
+.post(userController.searchUser)
 
 router.route('/unshared/:id')
-.post(userController.unsharePost);
+.post(isLoggedin,userController.unsharePost);
 
 module.exports=router;

@@ -168,18 +168,24 @@
 
 .home-head
 {
-  border-bottom: 1px solid #bdbcbc;
-  margin-bottom: 25px;
+ 
+ 
   font-size: 1.2rem;
   padding: 5px;
   margin-top:5px;
   font-weight: bold;
+  border-bottom: 1px solid #ffeaea;
 
 
  
 }
 
-
+.search-pic
+{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
 
 
 
@@ -295,7 +301,7 @@ input
   height: 30px;
     text-align: center;
     display: flex;
-    justify-content: c;
+   
     align-items: center;
     margin-right: 10px;
     justify-content: space-between;
@@ -303,6 +309,8 @@ input
     color: #878787;
     font-size: 0.8em;
 }
+
+
 
 
 .vote
@@ -413,6 +421,40 @@ color: #1665c4;
   font-weight: bold;
 }
 
+.profile_head i:hover{
+  text-decoration: none;
+}
+.profile_head:hover
+{
+  text-decoration: none;
+
+}
+.bx:hover,a:hover
+{
+  text-decoration: none!important;
+}
+
+.left-ui
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.btn-post
+{
+  color: white;
+  background-color: #0c0801;
+}
+.btn-post:focus
+{
+  outline: none!important;
+}
+.profile_head
+{
+  color: black;
+}
 @media (max-width: 402px) {
   .post-img
   {
@@ -420,4 +462,114 @@ color: #1665c4;
     
   }
   
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Righteous&display=swap');
+
+.web-name
+{
+ font-family: 'Cabin', sans-serif;
+font-family: 'Righteous', cursive;
+}
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  /* width: 100%; */
+  /* border: 3px solid #00B4CC; */
+  border-right: none;
+  padding: 5px;
+  /* height: 20px; */
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  /* color: #9DBFAF; */
+  height: 34px;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #020c0e;
+  background: #032a30;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 1px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  /* align-items: flex-end; */
+  align-items: start;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.search
+{
+  width: 300px;
+  display: flex;
+}
+
+.user-searched
+{
+  height: 50px;
+  margin-left: 0;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.search-card
+{
+  background-color: #f2f2f2;
+}
+
+.search-card:hover
+{
+  background-color: #e7e7e7;
+}
+
+.btn-follow:hover
+{
+  background-color:#856e6e;
+}
+
+.posted-time
+{
+
+  font-size: 0.8em;
+  margin-left: 10px;
+  color: gray;
 }

@@ -1,7 +1,7 @@
 .profile-left,.profile-right
 {
 
-    background-color: #fff8f8;
+    background-color: #ededed;
 }
 
 .profile-center
@@ -262,3 +262,11 @@ html,body {
   border:none!important
 
 }
+
+
+.btn-follow:hover
+{
+  background-color:#856e6e;
+}
+
+

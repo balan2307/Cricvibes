@@ -42,7 +42,13 @@ const postSchema=new mongoose.Schema({
     sharedBy:[{
         type:Schema.Types.ObjectId,
         ref:'User'
-    }]
+    }],
+    time:{
+        type:Number
+    },
+    posted:{
+        type:String
+    }
 
 })
 
@@ -52,13 +58,23 @@ postSchema.statics.findByTag=function(tag){
     return this.find({tags:{$in:[tag]}})
 }
 
+postSchema.statics.findAllposts=async function(user,feeds)
+{
+   
+    let posts=await Post.find({user:{$in:feeds}}).populate('user');
+    let sposts=await Post.findSharedposts(feeds);
+    let allposts=[...posts,...sposts];
+    return allposts;
+
+}
+
 postSchema.statics.findSharedposts=async function(feeds)
 {
 
 
     let sposts=[];
     let posts;
-    console.log("Feeds",feeds.length)
+    // console.log("Feeds",feeds.length)
     
       for(let i=0;i<feeds.length;i++)
       {
@@ -71,10 +87,28 @@ postSchema.statics.findSharedposts=async function(feeds)
        
         
         posts=await Post.find({"sharedBy":feed.valueOf()}).populate('user')
+        let id=await User.findById(feed.valueOf())
+        let sharedposts=id.shared;
+        let time;
+
+        // console.log("Shared posts",sharedposts);
+        //get posts.id 
+        //find user with feed.valueOf and compare shared array and find post.id to get time
         for(let i=0;i<posts.length;i++)
         {
+            sharedposts.forEach((item) => {
+                if (item.id.valueOf() == posts[i].id) {
+                   time=item.time;
+                   console.log("TIme",time);
+                }
+            });
+           if(time)
+           {
+               posts[i]["time"]=time;
+           }
            posts[i]["shareduser"]=user_name;
            posts[i]["sharedid"]=feed.valueOf();
+           console.log("Pushed",posts[i]);
            sposts.push(posts[i]);
            console.log("testing",sposts.length);
 

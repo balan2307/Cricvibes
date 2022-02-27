@@ -114,5 +114,39 @@ function followToggle(e)
    }
 }
 
+let it;
+
+function followToggleSearch(e)
+{
+
+
+   let user_id=e.getAttribute("profile");
+   let res=e;
+  
+ 
+   
+   
+
+   
+   if(res.innerText=="Follow") 
+   {
+
+      console.log("Fol")
+    
+      
+      res.innerText="Unfollow"
+      console.log("Follow",user_id);
+      axios.post(`/user/follow/${user_id}`).then((res)=>console.log("response",res));
+}
+   else if(res.innerText=="Unfollow") 
+   {
+    
+    
+      console.log("unFol")
+      res.innerText="Follow";
+      axios.post(`/user/unfollow/${user_id}`).then((res)=>console.log("response",res));
+
+   }
+}
 const followBtn=document.getElementById('follow-btn');
 

@@ -82,3 +82,19 @@ form{
 
 }
 
+
+.alert {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 20px;
+    background-color: #fd4d96;
+    border: none;
+  
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0;
+  }
