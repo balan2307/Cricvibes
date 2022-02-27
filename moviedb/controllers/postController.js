@@ -121,6 +121,7 @@ let total=allposts.length;
 
 // }
 let nposts=allposts.slice(skip,skip+2);
+console.log("s");
 // console.log("Sliced",nposts);
 // Post.findSharedposts(feeds)
 // .then((data)=>
