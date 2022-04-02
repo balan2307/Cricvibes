@@ -191,9 +191,20 @@
 
 
 
-      <div class="d-none d-lg-inline-block col-lg-3 col-more" >
+      <div class="d-none  d-lg-inline-block col-lg-3 col-more" >
+        <div class="d-flex logout justify-content-around">
+          <!-- <div>
+             Logged in as 
+          </div> -->
+  
+          <form action="/user/logout">
+            <button class="btn btn-sm btn-dark btn-logout">Logout</button>
+          </form>
+        </div>
 
-        <div class="wrap">
+      
+
+        <div class="wrap" style="margin-top: 100px;">
           <div class="search  ">
             <form  action="/user/search" method="post">
               <div class="d-flex">

@@ -57,6 +57,13 @@ module.exports.registerUser=catchAsync(async(req,res)=>
 
 })
 
+module.exports.logoutUser = catchAsync((req, res) => {
+    req.flash("success", "You are logged out!");
+    req.session.destroy();
+    res.redirect("/user/login");
+  })
+
+
 
 module.exports.getProfile=catchAsync(async(req,res)=>
 {
@@ -69,21 +76,21 @@ let posts=[];
 let uposts=[];
 let dposts=[];
 
-if(id==currentUser)
-{
-// console.log("If user");
-posts=await Post.find({user:currentUser}).populate('user');
-uposts=await Post.find({upvotes:{$in:[currentUser]}}).populate('user')
-dposts=await Post.find({downvotes:{$in:[currentUser]}}).populate('user')
-}
-else
-{
+// if(id==currentUser)
+// {
+// // console.log("If user");
+// posts=await Post.find({user:currentUser}).populate('user');
+// uposts=await Post.find({upvotes:{$in:[currentUser]}}).populate('user')
+// dposts=await Post.find({downvotes:{$in:[currentUser]}}).populate('user')
+// }
+// else
+// {
 
 // console.log("else user");
 posts=await Post.find({user:id}).populate('user');
 uposts=await Post.find({upvotes:{$in:[id]}}).populate('user')
 dposts=await Post.find({downvotes:{$in:[id]}}).populate('user')
-}
+// }
 
 
 
@@ -109,7 +116,7 @@ let user_following=[];
 user_following=current_user.following;
 
 // console.log("Updated",user_following)
-res.render('profile',{posts,vposts,sposts,cuser,user_following});
+res.render('profile',{posts,vposts,currentUser,sposts,cuser,user_following});
 })
 
 

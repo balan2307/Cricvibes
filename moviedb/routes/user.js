@@ -13,6 +13,10 @@ router.route('/login')
   res.render("auth/login")})
 .post(userController.loginUser);
 
+router.route('/logout')
+.get(userController.logoutUser);
+
+
 router.route('/register')
 .get((req,res)=>res.render("auth/register"))
 .post(userController.registerUser);

@@ -137,9 +137,21 @@
   
 
   padding:10px;
+  /* overflow-y: scroll; */
+  overflow: hidden;
 
   
 }
+
+/* .col-more::-webkit-scrollbar {
+  display: none;
+}
+
+.col-more {
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
+} */
+
 .col-content
 {
   overflow-y: scroll;
@@ -572,4 +584,9 @@ body{
   font-size: 0.8em;
   margin-left: 10px;
   color: gray;
+}
+
+.logout .btn-logout{
+  font-weight:bold;
+  font-size: 1em;
 }
