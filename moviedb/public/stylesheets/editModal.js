@@ -16,6 +16,9 @@ function showEditModal(id)
     // document.querySelector("#e-image").src = post.image.url;
     document.querySelector("#e-text").value = post.text;
     document.querySelector("#preview_edit").src=post.image.url;
+    let pic=document.getElementsByClassName('remove-prev-pic')[0];
+    console.log("pic",pic)
+    pic.style.display="block";
     // console.log("Post",post.text)
  
 
@@ -91,3 +94,24 @@ function add_tags_edit(n) {
   }
 
 
+
+  function removeprev() {
+    // if (input.files && input.files[0]) {
+      //  var reader = new FileReader();
+      //  reader.onload = function(event) {
+          $('#preview_edit').attr('src', "");
+          let pic=document.getElementsByClassName('remove-pic')[0];
+          console.log("pic delte",pic)
+          pic.style.display="none";
+  
+       
+      //  reader.readAsDataURL=" ";
+      //  input.files[0]=""
+      //  $(".filelabel .title").text(" ");
+      document.getElementById("FileInput_edit").value=null;
+      // document.getElementsByClassName("title")[0].innerHTML="<i class='bx bx bx-image-alt'></i>";
+      // document.getElementsByClassName("title")[0].style.color="black";
+      // document.getElementsByClassName("filelabel1")[0].style.border="none";
+  
+    // }
+  }

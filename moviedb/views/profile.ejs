@@ -106,7 +106,7 @@
 
                     <div class="" style="margin-top: 70px ;margin-left: 20px">
                     <p > <span style="margin-right: 20px;"><%=cuser.username%></span> 
-                       <% console.log("cuser",cuser.id,currentUser) %>
+                       <!-- <% console.log("cuser",cuser.id,currentUser) %> -->
                        <% if(cuser.id!=currentUser && cuser.following.includes(currentUser)){%>
                        <span  style=" font-size: 0.8em;"> Follows you</span>
                        <%}%>
@@ -268,7 +268,9 @@
                          Posted by - <a href="/user/profile/<%=posts[i].user._id%>"><%=posts[i].user.username%></a>
 
                         </div>
+               <% if(posts[i].image.url) {%>
               <img src="<%=posts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
+              <%}%>
               <div class="card-body post-body" >
             
                 <h5 class="card-title"><%=posts[i].title%></h5>
@@ -367,7 +369,9 @@
                         <div class="user-det d-flex justify-content-start">
                          Posted by - <a href="/user/profile/<%=vposts[i].user._id%>"> <%=vposts[i].user.username%> </a>
                         </div>
+                <% if(vposts[i].image.url) {%>         
               <img src="<%=vposts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
+              <% }%>
               <div class="card-body post-body" >
             
                 <h5 class="card-title"><%=vposts[i].title%></h5>

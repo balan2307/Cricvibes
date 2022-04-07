@@ -43,13 +43,24 @@ let tags=[tag0,tag1,tag2];
 tags= tags.filter(i => i);
 tags=tags.map(i=>i.toLowerCase());
 let user=req.session.user;
+let newPost;
+if(req.file)
+{
 const {path,filename}=req.file;
-
-const newPost=new Post({title,image,text,tags,user});
-// console.log("Files",req.file)
+newPost=new Post({title,image,text,tags,user});
 newPost.image={url:path,filename:filename};
 newPost.posted=date_time;
 newPost.time=Date.now();
+
+}
+else
+{
+
+newPost=new Post({title,text,tags,user});
+newPost.posted=date_time;
+newPost.time=Date.now();
+}
+
 // console.log("User",user);
 // console.log("newPost",newPost);
 
@@ -166,8 +177,8 @@ let limit=parseInt(size);
 let skip=(page-1)*size;
 
 
-let foundPost=await Post.findByTag(tag).populate('user').limit(limit).skip(skip);
-foundPost=foundPost.sort((a, b) => (a.time < b.time) ? 1 : -1)
+let foundPost=await Post.findByTag(tag).populate('user').sort({time:-1}).limit(limit).skip(skip);
+// foundPost=foundPost.sort((a, b) => (a.time < b.time) ? 1 : -1)
 
 let total=await Post.findByTag(tag).count();
 
@@ -185,6 +196,14 @@ module.exports.editPost=catchAsync(async(req,res,next)=>
  
 // console.log("Edit");
 const {title,image,text,tag0,tag1,tag2}=req.body;
+let path,filename;
+if(req.file)
+{
+
+  path=req.file.path;
+  filename=req.file.filename;
+}
+console.log("Imaaage",req.file,"body",req.body);
 let tags=[];
 
 if(tag0)
@@ -205,15 +224,35 @@ const {id}=req.params;
 const getUser=await Post.findById(id);
 // console.log("File check",req.file);
 let imageobj={};
+imageobj=getUser.image;
 if(!req.file)
 { 
 
-  imageobj=getUser.image;
+  console.log("No image",imageobj,imageobj.length,imageobj.length>=1);
+  //  if(image) await cloudinary.uploader.destroy(imageobj.filename);
+  
+   if( !(Object.keys(imageobj).length === 0)) 
+   {
+     console.log("prev image found",imageobj);
+     await cloudinary.uploader.destroy(imageobj.filename);
+   }
+   imageobj={};
 }
 else
 {
-  const {path,filename}=req.file;
+
+  
+ console.log("Has a imageaaa");
+  if( !(Object.keys(imageobj).length === 0)) 
+  {
+    console.log("prev image found",imageobj);
+    await cloudinary.uploader.destroy(imageobj.filename);
+  }
   imageobj={url:path,filename:filename};
+  console.log("iamge received",imageobj);
+ 
+  
+  
 }
 
 
@@ -291,8 +330,7 @@ for(let i=0;i<shareduser.length;i++)
 }
 
 
-
-await cloudinary.uploader.destroy(filename);
+if(filename) await cloudinary.uploader.destroy(filename);
 const foundUser=await Post.findByIdAndDelete(id);
 if(foundUser)
 {

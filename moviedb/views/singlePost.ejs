@@ -119,7 +119,7 @@
    
 
    
-      <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
+      <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-xm">Delete</button>
     </form>
     <%}%>
     <a class="btn btn-sm btn-cmt" data-toggle="collapse" href="#add-comment" role="button" aria-expanded="false" aria-controls="add-comment">
@@ -161,20 +161,27 @@
 
 
 
-<div>
+<div class="comments">
   <h4>Comments</h4>
   <% for(let comment of post.comments){ %>
     <div class="card mb-3">
-        <div class="card-body">
-            <% console.log("comment",comment) %>
-            <p><%=comment.comment%>   </p>
-            <!-- <span><%= comment.user.username%></span> -->
+        <div class="card-body comment-body">
+          <span style="margin-right: 100px; font-weight: bold;"><%= comment.user.username%></span>
+            <!-- <% console.log("comment",comment) %> -->
+            <p style="font-size: 1.2em; padding-top: 2px;"><%=comment.comment%>   </p>
+
+            
 
             <% if(comment.user._id==user._id){%>
-          <form style="display: inline-block;" action="/user/post/<%=post.id%>/comment/<%=comment.id%>?_method=DELETE" method="POST"  >
+          <form style="display: inline" action="/user/post/<%=post.id%>/comment/<%=comment.id%>?_method=DELETE" method="POST"  >
 
-   
-          <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
+          <div class="d-flex justify-content-end" >
+ 
+            <button style="display: inline-block;" type="submit" class="btn btn-delete  btn-sm">Delete</button>
+       
+          </div>
+         
+         
         </form>
         <%}%>
        

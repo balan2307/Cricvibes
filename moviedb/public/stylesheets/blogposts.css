@@ -163,6 +163,7 @@
   padding-right: 10px; */
 
   height: 100vh;
+  background-color: white;
 }
 .col-content::-webkit-scrollbar {
   display: none;
@@ -589,4 +590,25 @@ body{
 .logout .btn-logout{
   font-weight:bold;
   font-size: 1em;
+}
+
+.comments
+{
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.searchTerm
+{
+  color:black;
+}
+
+.comment-body
+{
+ padding: 1.15em;
+ margin: 0;
+}
+.comment-body p{
+  margin: 0;
 }

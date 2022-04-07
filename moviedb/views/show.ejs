@@ -45,7 +45,14 @@
       <div class="col-lg-6 col-12 col-sm-8 col-content" >
        
        <div class="home-head">
+         <div class="d-flex justify-content-between">
+
+        
         <p>Home</p>
+        <form action="/user/logout">
+          <button class="btn btn-sm btn-dark btn-logout">Logout</button>
+        </form>
+         </div>
       
 
        </div>
@@ -102,7 +109,10 @@
              </div>
              <%}%>
             </div>
+  <% if(posts[i].image.url) {%>
+   <!-- <% console.log("check",posts[i].image.url) %> -->
   <img src="<%=posts[i].image.url%>" class="card-img-top post-img img-fluid" alt="...">
+  <%}%>
   <div class="card-body post-body" >
 
     <h5 class="card-title"><%=posts[i].title%></h5>
@@ -148,11 +158,14 @@
     <form style="display: inline-block;" action="/user/post/<%=posts[i].id%>" method="GET"  >
       <button style="display: inline-block;" type="submit" class="btn btn-cmt  btn-sm">Comment</button>
     </form>
-    <% console.log("show",sposts,posts[i].id) %>
+    <!-- <% console.log("show",sposts,posts[i].id) %> -->
     <div style="display: inline; padding: 10px;font-size: 0.9rem;" > <i onclick="sharebtn(this,'<%=posts[i]._id%>')" class='bx   share-btn bx-sm bx-rotate-180  <%= sposts &&  sposts.includes(posts[i].id) ? 'bxs-share': 'bx-share' %>  '></i><span id="share_status" style="margin-left: 5px;">
                                                                                                                                             <%=sposts &&  sposts.includes(posts[i].id) ? 'Shared': 'Share' %>  </span> 
     <span class="share_post" id="<%=posts[i]._id%>" style="display:none;" ></span></div>
  
+  </div>
+  <div>
+    <span class="posted-time"><%=posts[i].posted%></span>
   </div>
 
 </div>
@@ -164,7 +177,7 @@
        
 
       </div>
-     <% console.log("Posts",posts.length) %>
+     <!-- <% console.log("Posts",posts.length) %> -->
      
       <div>
         <nav aria-label="...">
@@ -197,9 +210,9 @@
              Logged in as 
           </div> -->
   
-          <form action="/user/logout">
+          <!-- <form action="/user/logout">
             <button class="btn btn-sm btn-dark btn-logout">Logout</button>
-          </form>
+          </form> -->
         </div>
 
       

@@ -230,17 +230,47 @@ function display(input) {
      var reader = new FileReader();
      reader.onload = function(event) {
         $('#preview').attr('src', event.target.result);
+        let pic=document.getElementsByClassName('remove-pic')[0];
+        pic.style.display="block"
      }
      reader.readAsDataURL(input.files[0]);
   }
 }
 
 
+function removeprev() {
+  // if (input.files && input.files[0]) {
+    //  var reader = new FileReader();
+    //  reader.onload = function(event) {
+        $('#preview').attr('src', "");
+        let pic=document.getElementsByClassName('remove-pic')[0];
+        pic.style.display="none";
+
+     
+    //  reader.readAsDataURL=" ";
+    //  input.files[0]=""
+    //  $(".filelabel .title").text(" ");
+    document.getElementById("FileInput").value=null;
+    document.getElementsByClassName("title")[0].innerHTML="<i class='bx bx bx-image-alt'></i>";
+    document.getElementsByClassName("title")[0].style.color="black";
+    document.getElementsByClassName("filelabel")[0].style.border="none";
+
+  // }
+}
+
+
+
 function display_edit(input) {
   if (input.files && input.files[0]) {
      var reader = new FileReader();
      reader.onload = function(event) {
+       console.log("display edit modal");
+       let pic=document.getElementsByClassName('remove-prev-pic')[0];
+       console.log("pic selected",pic)
+       pic.style.display="block"
+     
         $('#preview_edit').attr('src', event.target.result);
+       
      }
      reader.readAsDataURL(input.files[0]);
   }
@@ -249,7 +279,7 @@ function display_edit(input) {
 
 
 $("#FileInput").change(function() {
-  console.log("Jquery");
+  console.log("Jquery test");
   display(this);
 });
 

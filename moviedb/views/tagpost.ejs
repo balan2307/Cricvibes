@@ -75,7 +75,9 @@
             <div class="user-det justify-content-start">
              Posted by-<a href="/user/profile/<%=posts[i].user._id%>"><%=posts[i].user.username%></a>
             </div>
+            <% if(posts[i].image.url) {%>
   <img src="<%=posts[i].image.url%>" class="card-img-top post-img" alt="...">
+   <%}%>
   <div class="card-body post-body" >
 
     <h5 class="card-title"><%=posts[i].title%></h5>
@@ -120,6 +122,9 @@
       <%= sposts && sposts.includes(posts[i].id) ? 'Shared': 'Share' %> 
     </span> 
     <span class="share_post" id="<%=posts[i]._id%>" style="display:none;" ></span></div>
+  </div>
+  <div>
+    <span class="posted-time"><%=posts[i].posted%></span>
   </div>
 
 </div>
