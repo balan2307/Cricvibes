@@ -144,23 +144,48 @@
                                   <div  class="img mb-5 profile-modal-upload" id="coverImage" style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXh6vH////5+vrl7fPv8/f0+fzt9Pbf6vD+/f/j6/Lf6vL///3f6fLr8fbv8/by9vm0HxD7AAACbUlEQVR4nO3c65abIBRAYVHTDALx/d+2VBuDII6zLHro2t/fmEn2HETn2jQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkG29irNHa4I9G9+qu83B2BTauu01JIIYUUUkghhbcX/ipFTGH3LKOTUmi6Qq/QGQrLovA8Ckuj8LzqC/98A2ZX5YXd2Lajf6beOaTmwm5+tnnsBNZc+NTt/OaNanWT/U5hzYWjWjzyh1VSqK1ONpTPW/fyz66kcHCqixJtHwSqPvvUKgq1D/Rjik61MZzhWPd5aJ3fTfwR6yn+P4XzBFU8RevCwvzPJCoo9IFmepdmPUUdFuqaZzgt0fcUw8T+88Ar/wrSC/UywemgcKE+7Tg/ZNRY8V2bDScYT9G6r+mdu+fOK8guXE8wmaK/Vet6980PPmUXDvEEVXLRCL942lwGkguny0RSmF76//ILuh/SE1JyYXIObk/xzfn17NJH5BZ+LvSHpmjno10yRbmFySYTDHFjivONnZ9iHC+3MLNE31NcJy7zNsn9m9DC9DIRTXG9UD977jTF1UIVWpjbZDJTDM/YeLsRWfjdBKMprj8d8RRFFm5d6Dca31OM99z1diOwMHehT01TTBe0WV00BBYem+AyRbdxcDhFgYX6YN80RZu5LTCSZ9gcLzSqz+xIZvloAgt/MsN8u+QZUkghhRRSSCGFFFJIIYWXFKqv85Towr3fcDpKSy78xygsjcLzKCyNwvPEFCpthxKsVlIKXVeGE1NYHoUUUkghhRRSeFfh2D6u0o53BOpmuOz/RA17f8MHAAAAAAAAAAAAAAAAAAAAAAAAAAAAALjcb3yLQG5tF3tgAAAAAElFTkSuQmCC');
                                   background-position: center;">
                                   <%}%>
+                                  <% if(cuser.cover_image && cuser.cover_image.url) {%> 
+                                  <input style="display: none;" id="delcoverpic" name="delcover" value="false"  type="text">
+                                  <%} else{ %>
+                                    <input style="display: none;" id="delcoverpic" name="delcover"  value="false" type="text">
+                                    <%}%>
+
+                                    <% if(cuser.profile_image && cuser.profile_image.url) {%> 
+                                       <% console.log("cuser present") %>
+                                      <input style="display: none;" id="delprofilepic" name="delprofile" value="false"  type="text">
+                                      <%} else{ %>
+                                        <input style="display: none;" id="delprofilepic" name="delprofile" value="false" type="text">
+                                        <%}%>
+
+                                 
+                                  <!-- <input style="display: none;" id="delprofpic" name="delprof" value="false" type="text"> -->
 
                                 <div class="d-flex justify-content-center">
                                 <label class="filelabel" >
                
                                   <i style="margin-top: 55px;" class='bx bx bx-image-alt cover-upload-icon'></i>
                          
-                                 
-                          
-                              <input class="FileUpload1" id="CoverInput" name="cover_image" type="file"/>
+                                  
+                               
+                               <% if(cuser.cover_image && cuser.cover_image.url) {%> 
+                  
+                              <input class="FileUpload1" id="CoverInput"   name="cover_image" type="file"/>
+                              <%}else{ %>
+                                <input class="FileUpload1" id="CoverInput"    name="cover_image" type="file"/>
+                                <%}%>
+
                       
                           </label>
                           </div>
-                          <!-- <% if(cuser.cover_image && cuser.cover_image.url) {%>               -->
+                          
                             <div class="d-flex justify-content-end">
-                            <i  onclick="deleteCoverImage(this)" class='bx bxs-message-alt-x cover-delete-icon' filename="<%=cuser.cover_image.filename%>" id="<%=cuser._id%>"></i>
+                              <% if(cuser.cover_image && cuser.cover_image.url) {%> 
+                            <i  onclick="deleteCoverImage(this)" style="display: inline;" class='bx bxs-message-alt-x cover-delete-icon' filename="<%=cuser.cover_image.filename%>" id="<%=cuser._id%>"></i>
+                            <%}else{%>
+                              <i  onclick="deleteCoverImage(this)" style="display: none;" class='bx bxs-message-alt-x cover-delete-icon' filename="" id="<%=cuser._id%>"></i>
+                              <%}%>
                             </div>
-                            <!-- <%}%> -->
+                     
                                 
                             
                                 <% if(cuser.profile_image && cuser.profile_image.url) {%>
@@ -173,13 +198,23 @@
                                 <label class="filelabel" style="display: inline-block;">
                
                                     <i class='bx bx bx-image-alt upload-icon'></i>
+
                             
-                                <input class="FileUpload1" id="ProfileInput" name="profile_image" type="file"/>
+                                    
+                               <% if(cuser.profile_image && cuser.profile_image.url) {%> 
+                                <input class="FileUpload1"  id="ProfileInput" name="profile_image" type="file"/>
+                                <%}else{ %>
+                                  <input class="FileUpload1" id="ProfileInput" name="profile_image" type="file"/>
+                                  <%}%>
                         
                             </label>
                             <% if(cuser.profile_image && cuser.profile_image.url) {%>              
-                              <i  onclick="deleteProfileImage(this)" class='bx bxs-message-alt-x profile-delete-icon ' filename="<%=cuser.profile_image.filename%>" id="<%=cuser._id%>"></i>
-                              <%}%>
+                              <i  style="display: inline;" onclick="deleteProfileImage(this)" class='bx bxs-message-alt-x profile-delete-icon ' filename="<%=cuser.profile_image.filename%>" id="<%=cuser._id%>"></i>
+
+                              <%}else{ %>
+                                <i  style="display: none;" onclick="deleteProfileImage(this)" class='bx bxs-message-alt-x profile-delete-icon ' id="<%=cuser._id%>"></i>
+
+                                <%}%>
                               </div>
                               <div class="other-info">
                               <div class="mb-3 form-ele">

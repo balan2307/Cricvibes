@@ -238,7 +238,7 @@ function display(input) {
 }
 
 
-function removeprev() {
+function removeprev_post() {
   // if (input.files && input.files[0]) {
     //  var reader = new FileReader();
     //  reader.onload = function(event) {

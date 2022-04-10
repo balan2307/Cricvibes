@@ -127,17 +127,30 @@ module.exports.updateProfile=catchAsync(async(req,res)=>
   
     
    
-    const {username,bio}=req.body;
+    const {username,bio,delcover,delprofile}=req.body;
+    console.log("Body",req.body.delprofile,"c",req.body.delcover);
     const {id}=req.params;
     const getUser=await User.findById(id);
     let image={}
     const {profile_image,cover_image}=req.files;
-    // console.log("files",profile_image,cover_image);
+    console.log("files got",req.files);
+    console.log("files",profile_image,cover_image,!cover_image);
     let pimage={}
     let cimage={}
-    if(!profile_image)
+    if(!profile_image && delprofile=="false")
     {
+        console.log("PROF 1",delprofile);
         pimage=getUser.profile_image;
+    }
+    else if(!profile_image && delprofile=="true")
+    {
+        console.log("PROF 2");
+        if(getUser.profile_image && getUser.profile_image.filename) 
+        {
+     await cloudinary.uploader.destroy(getUser.profile_image.filename);
+        }
+        pimage={}; 
+
     }
     else
     {
@@ -150,12 +163,25 @@ module.exports.updateProfile=catchAsync(async(req,res)=>
      pimage={url:profile_image[0].path,filename:profile_image[0].filename}
     }
 
-    if(!cover_image)
+    if(!cover_image && delcover=="false")
     {
+
         cimage=getUser.cover_image;
+
+    }
+    else if(!cover_image && delcover=="true")
+    {
+        
+        if(getUser.cover_image && getUser.cover_image.filename) 
+        {
+        await cloudinary.uploader.destroy(getUser.cover_image.filename);
+        }
+        cimage={};
+        
     }
     else
     {
+        
         if(getUser.cover_image && getUser.cover_image.filename) 
         {
         await cloudinary.uploader.destroy(getUser.cover_image.filename);

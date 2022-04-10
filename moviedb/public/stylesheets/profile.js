@@ -1,13 +1,16 @@
 function display_prof(input) {
+   console.log("prof photo upload")
     if (input.files && input.files[0]) {
        var reader = new FileReader();
        const delete_prof=document.getElementsByClassName('profile-delete-icon')[0];
        if(delete_prof)
        {
        delete_prof.style.display="inline";
+      
        }
        reader.onload = function(event) {
           $('#prof-preview').attr('src', event.target.result);
+          document.getElementById("delprofilepic").setAttribute("value","false");
        }
        reader.readAsDataURL(input.files[0]);
     }
@@ -25,12 +28,19 @@ function display_prof(input) {
   function display_cover(input) {
    if (input.files && input.files[0]) {
       var reader = new FileReader();
+      let del_icon=document.getElementsByClassName('cover-delete-icon')[0];
+      console.log("delete",del_icon);
+       del_icon.style.display="inline";
+     
       
       
     
       reader.onload = function(event) {
       
          $('#coverImage').css('background-image', 'url(' + event.target.result + ')');
+         console.log("putting cover")
+         document.getElementById("delcoverpic").setAttribute("value","false");
+
          
       }
       reader.readAsDataURL(input.files[0]);
@@ -62,8 +72,13 @@ function deleteCoverImage(e){
    let id=ele.getAttribute('id');
    console.log("Got",filename,id);
    ele.style.display="none";
+   document.getElementById("delcoverpic").setAttribute("value","true");
+   console.log("coverpic delete called",document.getElementById("delcoverpic").value);
+   
+  document.getElementById("CoverInput").value=null;
+  
 
-   axios.post(`/user/${id}/profile/coverimage`).then((res)=>console.log("response",res));
+   // axios.post(`/user/${id}/profile/coverimage`).then((res)=>console.log("response",res));
 }
  
 
@@ -75,9 +90,13 @@ function deleteProfileImage(e){
    let filename=ele.getAttribute('filename');
    let id=ele.getAttribute('id');
    console.log("Got",filename,id);
+   document.getElementById("delprofilepic").setAttribute("value","true");
+   document.getElementById("ProfileInput").value=null;
+  
+   
    ele.style.display="none";
 
-   axios.post(`/user/${id}/profile/profileimage`).then((res)=>console.log("response",res));
+   // axios.post(`/user/${id}/profile/profileimage`).then((res)=>console.log("response",res));
 }
  
 let res;
