@@ -15,7 +15,7 @@ function showEditModal(id)
     document.querySelector("#e-title").value = post.title;
     // document.querySelector("#e-image").src = post.image.url;
     document.querySelector("#e-text").value = post.text;
-    document.querySelector("#preview_edit").src=post.image.url;
+    if(post.image && post.image.url) document.querySelector("#preview_edit").src=post.image.url;
     let pic=document.getElementsByClassName('remove-prev-pic')[0];
     console.log("pic",pic)
     pic.style.display="block";

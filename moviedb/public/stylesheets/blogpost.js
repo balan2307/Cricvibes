@@ -238,6 +238,7 @@ function display(input) {
 }
 
 
+
 function removeprev_post() {
   // if (input.files && input.files[0]) {
     //  var reader = new FileReader();
@@ -397,3 +398,109 @@ e.classList.remove('bxs-share');
   
 
 }
+
+
+let data;
+async function getcricScore()
+{
+  console.log("api called");
+  
+
+  const config = {
+    method: 'get',
+    url: 'https://api.cricapi.com/v1/currentMatches?apikey=d9fe92c0-1a01-4608-afbd-4dde8e0b9858&offset=0'
+}
+
+let res = await axios(config);
+
+data=res.data.data;
+
+const par=document.getElementById('scorecard');
+par.innerHTML="";
+const tot=data.length;
+for(let i=0;i<tot;i++)
+{
+const div1 = document.createElement('div');
+div1.classList.add("match-score");
+const div2 = document.createElement('div');
+const p1 = document.createElement('p');
+p1.classList.add("match-name");
+p1.innerText=data[i].name;
+
+const p2 = document.createElement('p');
+const p3 = document.createElement('p');
+p3.classList.add("match_status");
+
+p2.classList.add("score");
+
+
+let scores=data[i].score;
+
+let mscore=""
+let team=""
+for(let i=0;i<scores.length ;i++)
+{
+ team="";
+  let sc=scores[i];
+  let s=sc.r+"/"+sc.w +"("+sc.o+")"+" ";
+
+  let a=sc.inning.replace("Inning","");
+  let b=a.replace("1","");
+   b=b.replace("2","");
+  let f=b.split(" ");
+
+
+  for(let i=0;i<f.length;i++)
+  {
+    if(f[i].length!=0)
+    {
+      team+=f[i][0];
+    }
+  }
+  if(team.length==1)
+  {
+    team=b.slice(0,4).toUpperCase();
+  }
+
+
+
+  mscore+=team;
+  mscore+=" "
+  mscore+=s;
+  if(sc.inning.includes("1")) mscore+="1st Inning"
+  else if(sc.inning.includes("2")) mscore+="2nd Inning"
+  mscore+="\n"
+  
+
+
+}
+
+// p2.innerText+=team;
+p2.innerText+=" " +mscore;
+p3.innerText=data[i].status;
+
+
+
+div2.appendChild(p1);
+
+div2.appendChild(p2);
+div2.appendChild(p3)
+div1.appendChild(div2);
+
+par.appendChild(div1);
+}
+
+
+
+
+
+}
+getcricScore();
+
+function printeg()
+{
+  console.log("check")
+}
+printeg();
+// setInterval(printeg, 0.1 * 60 * 1000);
+setInterval(getcricScore, 1000 * 60 * 1000);

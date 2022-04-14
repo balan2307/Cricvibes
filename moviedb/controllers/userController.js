@@ -167,6 +167,7 @@ module.exports.updateProfile=catchAsync(async(req,res)=>
     {
 
         cimage=getUser.cover_image;
+        console.log("Cimage",cimage);
 
     }
     else if(!cover_image && delcover=="true")

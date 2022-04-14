@@ -76,7 +76,7 @@ if(saved)
 {
 
 // console.log("Saved",saved);
-res.redirect('/user/post');
+res.redirect(`/user/profile/${user._id}`);
 }
 
 })
@@ -196,6 +196,7 @@ module.exports.editPost=catchAsync(async(req,res,next)=>
  
 // console.log("Edit");
 const {title,image,text,tag0,tag1,tag2}=req.body;
+const currentUser=req.session.user._id;
 let path,filename;
 if(req.file)
 {
@@ -246,8 +247,9 @@ else
   if( !(Object.keys(imageobj).length === 0)) 
   {
     console.log("prev image found",imageobj);
-    await cloudinary.uploader.destroy(imageobj.filename);
+    if(imageobj && imageobj.filename) await cloudinary.uploader.destroy(imageobj.filename);
   }
+  console.log("updating pic",path,filename);
   imageobj={url:path,filename:filename};
   console.log("iamge received",imageobj);
  
@@ -261,7 +263,7 @@ const foundUser=await Post.findByIdAndUpdate(id,{title,image:imageobj,text,tags}
 if(foundUser)
 {
   // console.log("Updated",foundUser);
-  res.redirect('/user/post');
+  res.redirect(`/user/profile/${currentUser}`);
 }
 })
 
@@ -319,6 +321,7 @@ module.exports.deletePost=catchAsync(async(req,res)=>
  
 
 const {id}=req.params;
+const user=req.session.user._id;
 const findPost=await Post.findById(id);
 const filename=findPost.image.filename;
 const shareduser=findPost.sharedBy;
@@ -335,7 +338,7 @@ const foundUser=await Post.findByIdAndDelete(id);
 if(foundUser)
 {
   // console.log("Updated",foundUser);
-  res.redirect('/user/post');
+  res.redirect(`/user/profile/${user}`);
 }
 })
 
