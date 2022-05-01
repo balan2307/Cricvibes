@@ -15,7 +15,13 @@ function showEditModal(id)
     document.querySelector("#e-title").value = post.title;
     // document.querySelector("#e-image").src = post.image.url;
     document.querySelector("#e-text").value = post.text;
-    if(post.image && post.image.url) document.querySelector("#preview_edit").src=post.image.url;
+    if(post.image && post.image.url) 
+    {
+      document.querySelector("#preview_edit").src=post.image.url;
+      $('#editImage').attr('value','true');
+    }
+    else  $('#editImage').attr('value','false');
+
     let pic=document.getElementsByClassName('remove-prev-pic')[0];
     console.log("pic",pic)
     pic.style.display="block";
@@ -100,6 +106,7 @@ function add_tags_edit(n) {
       //  var reader = new FileReader();
       //  reader.onload = function(event) {
           $('#preview_edit').attr('src', "");
+          $('#editImage').attr('value','false');
           let pic=document.getElementsByClassName('remove-pic')[0];
           console.log("pic delte",pic)
           pic.style.display="none";

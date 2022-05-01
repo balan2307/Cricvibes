@@ -205,6 +205,7 @@ module.exports.editPost=catchAsync(async(req,res,next)=>
  
 // console.log("Edit");
 const {title,image,text,tag0,tag1,tag2}=req.body;
+console.log("IMage present or not",req.body.editImage);
 const currentUser=req.session.user._id;
 let path,filename;
 if(req.file)
@@ -213,7 +214,8 @@ if(req.file)
   path=req.file.path;
   filename=req.file.filename;
 }
-console.log("Imaaage",req.file,"body",req.body);
+// console.log("Imaaage",req.file,"body",req.body);
+console.log("Req.files",req.file);
 let tags=[];
 
 if(tag0)
@@ -239,14 +241,16 @@ if(!req.file)
 { 
 
   console.log("No image",imageobj,imageobj.length,imageobj.length>=1);
+  const edit_check= req.body.editImage;
   //  if(image) await cloudinary.uploader.destroy(imageobj.filename);
   
    if( !(Object.keys(imageobj).length === 0)) 
    {
      console.log("prev image found",imageobj);
-     await cloudinary.uploader.destroy(imageobj.filename);
+     if(imageobj && imageobj.filename && edit_check=='false') await cloudinary.uploader.destroy(imageobj.filename);
    }
-   imageobj={};
+   if(edit_check=='false') imageobj={};
+   
 }
 else
 {

@@ -244,8 +244,10 @@ function removeprev_post() {
     //  var reader = new FileReader();
     //  reader.onload = function(event) {
         $('#preview').attr('src', "");
+        $('#editImage').attr('value','false');
         let pic=document.getElementsByClassName('remove-pic')[0];
         pic.style.display="none";
+        console.log("Remove prev post")
 
      
     //  reader.readAsDataURL=" ";
@@ -271,6 +273,8 @@ function display_edit(input) {
        pic.style.display="block"
      
         $('#preview_edit').attr('src', event.target.result);
+        $('#editImage').attr('value','true');
+       
        
      }
      reader.readAsDataURL(input.files[0]);
