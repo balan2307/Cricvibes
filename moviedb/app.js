@@ -37,14 +37,14 @@ const mongoInit=require('./db/conn');
 const Movie=require('./models/movie')
 const InitRoutes=require('./routes/index');
 
-
+const secret=process.env.SECRET;
 
 dotenv.config();
 
 const store=new MongoStore({
   mongoUrl:process.env.DATABASE,
 
-  secret:"topSecret",
+  secret,
   touchAfter:24*60*60
 });
 
