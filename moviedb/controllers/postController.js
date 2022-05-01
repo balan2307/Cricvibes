@@ -81,6 +81,15 @@ res.redirect(`/user/profile/${user._id}`);
 
 })
 
+
+module.exports.homeroute=(req,res)=>
+{
+  
+  res.redirect('/user/login');
+
+}
+
+
 module.exports.getPost=catchAsync(async(req,res)=>
 {
 

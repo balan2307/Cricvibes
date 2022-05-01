@@ -9,6 +9,8 @@ const postController=require('../controllers/postController')
 
 const isLoggedin=require('../middlewares/user_auth')
 
+router.route('/').
+get(postController.homeroute)
 
 router.route('/home')
 .get(postController.post)
