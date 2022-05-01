@@ -507,4 +507,4 @@ function printeg()
 }
 printeg();
 // setInterval(printeg, 0.1 * 60 * 1000);
-setInterval(getcricScore, 1000 * 60 * 1000);
+setInterval(getcricScore, 10000 * 60 * 1000);
