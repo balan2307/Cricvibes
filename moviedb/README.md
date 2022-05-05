@@ -1,7 +1,7 @@
 
 # Cricvibes
 
-It is social media web application for Cricket fanatics build using MEN Stack. 
+It is social media web application for Cricket fanatics built using MEN Stack. 
 
 
 ## Features
