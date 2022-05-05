@@ -104,8 +104,15 @@
                       </div>
                       <% } %>
 
-                    <div class="" style="margin-top: 70px ;margin-left: 20px">
-                    <p > <span style="margin-right: 20px;"><%=cuser.username%></span> 
+                    <div class="" style=<%=cuser.id==currentUser ? "margin-top:70px;margin-left:20px" : "margin-left:20px" %>>
+                    <p > 
+                     
+                    
+                        <span style="margin-right: 20px;"><%=cuser.username%></span> 
+
+                       
+
+
                        <!-- <% console.log("cuser",cuser.id,currentUser) %> -->
                        <% if(cuser.id!=currentUser && cuser.following.includes(currentUser)){%>
                        <span  style=" font-size: 0.8em;"> Follows you</span>

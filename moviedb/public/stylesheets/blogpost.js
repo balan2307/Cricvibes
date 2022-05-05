@@ -420,7 +420,7 @@ let res = await axios(config);
 data=res.data.data;
 
 const par=document.getElementById('scorecard');
-par.innerHTML="";
+if(par) par.innerHTML="";
 const tot=data.length;
 for(let i=0;i<tot;i++)
 {
@@ -491,7 +491,7 @@ div2.appendChild(p2);
 div2.appendChild(p3)
 div1.appendChild(div2);
 
-par.appendChild(div1);
+if(par) par.appendChild(div1);
 }
 
 

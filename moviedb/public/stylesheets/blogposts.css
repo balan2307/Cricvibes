@@ -441,8 +441,9 @@ color: #1665c4;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2em;
+  font-size: 1.56em;
   font-weight: bold;
+
 }
 
 .profile_head i:hover{
@@ -644,4 +645,13 @@ body{
 {
   font-weight: bold;
   
+}
+
+.content{
+border-top-left-radius: 1em;
+border-bottom-left-radius: 1em;
+}
+
+.vote{
+  border-radius: 1em;
 }
