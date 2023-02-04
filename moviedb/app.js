@@ -73,7 +73,7 @@ app.use(flash());
 
 app.use(helmet({ contentSecurityPolicy: false}));
 
-const db=process.env.DATABASE;
+const db=process.env.DATABASE
 const port=process.env.PORT
 
 app.use((req, res, next) => {
