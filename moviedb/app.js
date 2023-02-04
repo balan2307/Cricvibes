@@ -75,7 +75,7 @@ app.use(helmet({ contentSecurityPolicy: false}));
 
 const db=process.env.DATABASE;
 const port=process.env.PORT
-
+// console.log("port",port,process.env)
 app.use((req, res, next) => {
 
   console.log("Reques",req.query);
@@ -120,5 +120,5 @@ app.use((err,req,res,next)=>
 
 app.listen(port,()=>
 {
-    console.log("Listening");
+    console.log("Listening to",port);
 })

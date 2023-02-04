@@ -14,13 +14,18 @@ module.exports.loginUser=catchAsync(async(req,res)=>
  
     const foundUser=await User.findOne({email});
     console.log("Body",req.body,foundUser);
-    const result=await bcrypt.compare(password, foundUser.password);
+    let result=false;
+    if(foundUser)  result=await bcrypt.compare(password, foundUser.password);
     
     if(result)
     {
         req.session.user=foundUser;
         res.redirect('/user/post');
         console.log("Loggg me")
+    }
+    else if(foundUser==null) 
+    {
+        res.send("User does not exist");
     }
     else
     {

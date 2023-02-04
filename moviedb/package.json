@@ -2,7 +2,7 @@
   "name": "moviedb",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.27.1",
