@@ -55,6 +55,7 @@ const postSchema=new mongoose.Schema({
 
 postSchema.statics.findByTag=function(tag){
 
+    console.log("tags ",tag)
     return this.find({tags:{$in:[tag]}})
 }
 

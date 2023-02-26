@@ -99,7 +99,7 @@
         <div style="margin-left:30px; display: inline-block;">
         <%if(post.tags){%>
           <% for(let j=0;j<post.tags.length;j++) {%>
-            <span class="tag" ><a class="tag-a" href="/post/<%=post.tags[j]%>"><%=post.tags[j] %> </a></span>
+            <span class="tag" ><a class="tag-a" href="/post/<%=post.tags[j]%>"># <%=post.tags[j] %> </a></span>
          
             <%}%>
           

@@ -22,7 +22,7 @@ module.exports.createPost=catchAsync(async(req,res,next)=>
 
   const d = new Date();
   let date_time = d.toLocaleString();
- 
+  console.log("date",date)
  
 const PostSchema=Joi.object({
  
@@ -41,7 +41,7 @@ const {title,image,text,tag0,tag1,tag2}=req.body;
 
 let tags=[tag0,tag1,tag2];
 tags= tags.filter(i => i);
-tags=tags.map(i=>i.toLowerCase());
+tags=tags.map(i=>i.toLowerCase().split("#")[1]);
 let user=req.session.user;
 let newPost;
 if(req.file)
@@ -230,6 +230,11 @@ if(tag2)
 {
   tags.push(tag2)
 }
+
+if(tags[0]) tags = tags.map(i => {
+  const splitTags = i.toLowerCase().split("#");
+  return splitTags.length > 1 ? splitTags[1] : splitTags[0];
+});
 
 // console.log("Tags",tags);
 const {id}=req.params;

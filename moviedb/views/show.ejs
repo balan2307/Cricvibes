@@ -147,7 +147,7 @@
         <div style=" display: inline-block;">
         <%if(posts[i].tags){%>
           <% for(let j=0;j<posts[i].tags.length;j++) {%>
-            <span class="tag" ><a class="tag-a" href="/post/<%=posts[i].tags[j]%>"><%=posts[i].tags[j] %> </a></span>
+            <span class="tag" ><a class="tag-a" href="/post/<%=posts[i].tags[j]%>"># <%=posts[i].tags[j] %> </a></span>
          
             <%}%>
           
