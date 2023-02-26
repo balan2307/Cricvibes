@@ -22,7 +22,8 @@ module.exports.createPost=catchAsync(async(req,res,next)=>
 
   const d = new Date();
   let date_time = d.toLocaleString();
-  console.log("date ",date)
+  console.log("date tesing")
+  console.log("date ",date_time)
  
 const PostSchema=Joi.object({
  
