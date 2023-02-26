@@ -23,6 +23,8 @@ module.exports.createPost=catchAsync(async(req,res,next)=>
   const d = new Date();
   let date_time = d.toLocaleString();
   console.log("date tesing")
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+console.log("zone",timeZone); 
   console.log("date ",date_time)
  
 const PostSchema=Joi.object({
